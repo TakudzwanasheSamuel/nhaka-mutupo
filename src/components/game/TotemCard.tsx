@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { CardState } from '@/lib/game-utils';
-import { TOTEMS } from '@/lib/totems';
+import { CardState, TOTEMS } from '@/constants/totems';
 import { useAudio } from '@/hooks/use-audio';
 import { cn } from '@/lib/utils';
 
@@ -48,14 +47,14 @@ export function TotemCard({ card, index, onClick }: TotemCardProps) {
                 <div className="relative">
                   <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-150 opacity-50" />
                   <img 
-                    src={totem.svg} 
+                    src={totem.image} 
                     alt={totem.name} 
                     className="w-14 h-14 sm:w-20 sm:h-20 object-contain text-primary relative z-10 brightness-110"
                   />
                 </div>
               </div>
               <span className="text-[10px] sm:text-xs font-headline text-center text-white/90 leading-tight px-1">
-                {totem.name}
+                {totem.name} ({totem.animal})
               </span>
             </div>
           )}

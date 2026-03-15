@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
-import { CardState, shuffleCards } from '@/lib/game-utils';
+import { CardState, getGameDeck } from '@/constants/totems';
 
 type GridSize = 16 | 20 | 36;
 
@@ -59,7 +59,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
   }, [state.bestScore]);
 
   const startNewGame = useCallback((size: GridSize) => {
-    const newCards = shuffleCards(size);
+    const newCards = getGameDeck(size);
     setState(prev => ({
       ...prev,
       gridSize: size,

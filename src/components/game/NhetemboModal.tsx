@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGame } from '@/context/GameContext';
 import { generatePraisePoemOnMatch } from '@/ai/flows/generate-praise-poem-on-match';
-import { TOTEMS } from '@/lib/totems';
+import { TOTEMS } from '@/constants/totems';
 import { Button } from '@/components/ui/button';
 import { X, Sparkles } from 'lucide-react';
 
@@ -22,7 +22,7 @@ export function NhetemboModal() {
           .then(res => setPoem(res.nhetemboPoem))
           .catch(err => {
             console.error("Poem failed", err);
-            setPoem(totem.snippet); // Fallback to cultural snippet if AI fails
+            setPoem(totem.nhetembo); // Fallback to cultural snippet if AI fails
           })
           .finally(() => setIsLoading(false));
       }
@@ -60,13 +60,13 @@ export function NhetemboModal() {
                 <div className="relative mb-8">
                   <div className="absolute inset-0 bg-primary/20 blur-3xl rounded-full scale-150" />
                   <div className="w-24 h-24 rounded-3xl bg-background/50 flex items-center justify-center p-5 border border-primary/20 relative z-10">
-                    {totem && <img src={totem.svg} alt={totem.name} className="w-full h-full object-contain brightness-125" />}
+                    {totem && <img src={totem.image} alt={totem.name} className="w-full h-full object-contain brightness-125" />}
                   </div>
                 </div>
                 
                 <div className="space-y-1 mb-10">
                   <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">Matched Totem</p>
-                  <h3 className="text-3xl font-headline text-white">{totem?.name}</h3>
+                  <h3 className="text-3xl font-headline text-white">{totem?.name} ({totem?.animal})</h3>
                 </div>
 
                 <div className="w-full py-8 border-y border-white/5 min-h-[220px] flex items-center justify-center italic text-xl leading-relaxed font-headline text-white/90">
@@ -78,14 +78,14 @@ export function NhetemboModal() {
                   ) : (
                     <div className="space-y-6">
                       <p className="whitespace-pre-line px-4">{poem}</p>
-                      {totem?.snippet && (
+                      {totem?.nhetembo && (
                         <div className="pt-4 flex flex-col items-center gap-2">
                           <div className="w-8 h-[1px] bg-primary/30" />
                           <p className="text-[10px] text-white/30 not-italic uppercase tracking-widest">
                             Traditional Wisdom
                           </p>
                           <p className="text-xs text-white/50 not-italic font-body">
-                            {totem.snippet}
+                            {totem.nhetembo}
                           </p>
                         </div>
                       )}
