@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
 import { CardState, getGameDeck } from '@/constants/totems';
 
 type GridSize = 16 | 20 | 36;
@@ -15,6 +15,8 @@ interface GameState {
   bestScore: number;
   gameStatus: 'idle' | 'playing' | 'paused' | 'finished';
   lastMatchedTotemId: string | null;
+  startTime: number | null;
+  duration: number | null; // final time in seconds
 }
 
 interface GameContextType extends GameState {
@@ -39,7 +41,11 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     bestScore: 0,
     gameStatus: 'idle',
     lastMatchedTotemId: null,
+    startTime: null,
+    duration: null,
   });
+
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   // Load persistence
   useEffect(() => {
@@ -71,6 +77,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       streak: 0,
       gameStatus: 'playing',
       lastMatchedTotemId: null,
+      startTime: Date.now(),
+      duration: null,
     }));
   }, []);
 
@@ -93,6 +101,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       let newLastMatchedId = null;
       let updatedStatus = prev.gameStatus;
       let newScore = prev.score + 1;
+      let finalDuration = prev.duration;
 
       if (newFlippedIndices.length === 2) {
         const [firstIdx, secondIdx] = newFlippedIndices;
@@ -106,6 +115,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
           
           if (newMatches === prev.gridSize / 2) {
             updatedStatus = 'finished';
+            finalDuration = Math.floor((Date.now() - (prev.startTime || Date.now())) / 1000);
           }
 
           const currentBest = prev.bestScore;
@@ -120,7 +130,8 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             streak: newStreak,
             lastMatchedTotemId: newLastMatchedId,
             gameStatus: updatedStatus,
-            bestScore: isNewBest ? newScore : currentBest
+            bestScore: isNewBest ? newScore : currentBest,
+            duration: finalDuration,
           };
         } else {
           // MISMATCH
