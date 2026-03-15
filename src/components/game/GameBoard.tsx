@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 import confetti from 'canvas-confetti';
 
 export function GameBoard() {
-  const { cards, flipCard, lastMatchedTotemId, gameStatus, score, matches, gridSize } = useGame();
+  const { cards, flipCard, lastMatchedTotemId, gameStatus, score, matches, gridSize, streak } = useGame();
   const { playLogDrum } = useAudio();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export function GameBoard() {
 
   useEffect(() => {
     if (gameStatus === 'finished') {
-      const duration = 4 * 1000;
+      const duration = 5 * 1000;
       const animationEnd = Date.now() + duration;
       const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, colors: ['#ffd700', '#1b3f7a', '#ffffff'] };
 
@@ -33,7 +33,7 @@ export function GameBoard() {
           return clearInterval(interval);
         }
 
-        const particleCount = 40 * (timeLeft / duration);
+        const particleCount = 50 * (timeLeft / duration);
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
       }, 250);
@@ -47,33 +47,31 @@ export function GameBoard() {
   const gridCols = getGridDimensions(gridSize);
 
   return (
-    <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 py-8">
+    <div className="w-full max-w-6xl mx-auto px-2 sm:px-4 py-4">
       {/* HUD */}
-      <div className="flex justify-around items-center mb-10 bg-card/40 backdrop-blur-sm p-6 rounded-3xl shadow-xl border border-white/10 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="flex justify-around items-center mb-10 bg-card/40 backdrop-blur-md p-8 rounded-[2.5rem] shadow-2xl border border-white/10 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         
-        <div className="text-center px-6">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-primary/70 font-bold mb-1">Rhythm</p>
-          <p className="text-3xl font-headline text-white">{score}</p>
+        <div className="text-center px-4">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-primary/70 font-bold mb-2">Moves</p>
+          <p className="text-4xl font-headline text-white">{score}</p>
         </div>
         
-        <div className="h-10 w-[1px] bg-white/10" />
+        <div className="h-12 w-[1px] bg-white/10" />
         
-        <div className="text-center px-6">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-primary/70 font-bold mb-1">Spirit Bond</p>
-          <div className="flex flex-col items-center">
-             <p className="text-3xl font-headline text-white">{matches}</p>
-             <p className="text-[10px] text-white/40">of {gridSize / 2}</p>
+        <div className="text-center px-4">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-primary/70 font-bold mb-2">Streak</p>
+          <p className="text-4xl font-headline text-primary animate-pulse">{streak}x</p>
+        </div>
+
+        <div className="h-12 w-[1px] bg-white/10 hidden sm:block" />
+
+        <div className="text-center px-4 hidden sm:block">
+          <p className="text-[10px] uppercase tracking-[0.3em] text-primary/70 font-bold mb-2">Ancestral Bonds</p>
+          <div className="flex items-baseline gap-1">
+             <p className="text-4xl font-headline text-white">{matches}</p>
+             <p className="text-xs text-white/30">/ {gridSize / 2}</p>
           </div>
-        </div>
-
-        <div className="h-10 w-[1px] bg-white/10" />
-
-        <div className="text-center px-6 hidden sm:block">
-          <p className="text-[10px] uppercase tracking-[0.2em] text-primary/70 font-bold mb-1">Trial</p>
-          <p className="text-lg font-headline text-white/80 capitalize">
-            {gridSize === 16 ? 'Cub' : gridSize === 20 ? 'Hunter' : 'Elder'}
-          </p>
         </div>
       </div>
 
@@ -95,18 +93,20 @@ export function GameBoard() {
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-16 text-center p-12 bg-primary/5 rounded-[3rem] border-2 border-primary/20 relative overflow-hidden"
+          className="mt-16 text-center p-12 bg-primary/5 rounded-[3.5rem] border-2 border-primary/30 relative overflow-hidden"
         >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--primary)_0px,_transparent_120px)] opacity-10" />
-          <h2 className="text-5xl font-headline text-primary mb-4">Makorokoto!</h2>
-          <p className="text-2xl text-white/80 mb-2 font-headline">The spirits are pleased.</p>
-          <p className="text-white/40 mb-8 italic">You completed the ritual in {score} moves.</p>
-          <div className="flex justify-center gap-4">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--primary)_0px,_transparent_150px)] opacity-20" />
+          <h2 className="text-6xl font-headline text-primary mb-4">Makorokoto!</h2>
+          <p className="text-2xl text-white/90 mb-4 font-headline">The ancestors celebrate your focus.</p>
+          <p className="text-white/40 mb-10 italic max-w-md mx-auto">
+            You completed the ritual in {score} moves. Your lineage is honored through your remembrance.
+          </p>
+          <div className="flex justify-center gap-6">
             <button 
-              onClick={() => window.location.reload()}
-              className="px-8 py-3 bg-primary text-background font-bold rounded-xl hover:scale-105 transition-transform"
+              onClick={() => window.location.href = '/'}
+              className="px-10 py-4 bg-primary text-background font-bold rounded-2xl hover:scale-105 transition-all shadow-lg shadow-primary/20"
             >
-              Play Again
+              Begin New Journey
             </button>
           </div>
         </motion.div>

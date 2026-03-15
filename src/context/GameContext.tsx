@@ -10,7 +10,8 @@ interface GameState {
   cards: CardState[];
   flippedIndices: number[];
   matches: number;
-  score: number;
+  score: number; // Moves
+  streak: number;
   bestScore: number;
   gameStatus: 'idle' | 'playing' | 'paused' | 'finished';
   lastMatchedTotemId: string | null;
@@ -25,7 +26,7 @@ interface GameContextType extends GameState {
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
 
-const STORAGE_KEY = 'nhaka_mutupo_state';
+const STORAGE_KEY = 'nhaka_mutupo_v2';
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<GameState>({
@@ -34,28 +35,28 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     flippedIndices: [],
     matches: 0,
     score: 0,
+    streak: 0,
     bestScore: 0,
     gameStatus: 'idle',
     lastMatchedTotemId: null,
   });
 
-  // Load from localStorage
+  // Load persistence
   useEffect(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        setState(prev => ({ ...prev, ...parsed }));
+        setState(prev => ({ ...prev, bestScore: parsed.bestScore || 0 }));
       } catch (e) {
         console.error("Failed to parse local storage", e);
       }
     }
   }, []);
 
-  // Save to localStorage
+  // Save persistence
   useEffect(() => {
-    const { bestScore } = state;
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ bestScore }));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ bestScore: state.bestScore }));
   }, [state.bestScore]);
 
   const startNewGame = useCallback((size: GridSize) => {
@@ -67,6 +68,7 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       flippedIndices: [],
       matches: 0,
       score: 0,
+      streak: 0,
       gameStatus: 'playing',
       lastMatchedTotemId: null,
     }));
@@ -87,22 +89,27 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
       newCards[index] = { ...newCards[index], isFlipped: true };
 
       let newMatches = prev.matches;
+      let newStreak = prev.streak;
       let newLastMatchedId = null;
       let updatedStatus = prev.gameStatus;
       let newScore = prev.score + 1;
 
-      // Handle pair matching
       if (newFlippedIndices.length === 2) {
         const [firstIdx, secondIdx] = newFlippedIndices;
         if (newCards[firstIdx].totemId === newCards[secondIdx].totemId) {
+          // MATCH
           newCards[firstIdx].isMatched = true;
           newCards[secondIdx].isMatched = true;
           newMatches += 1;
+          newStreak += 1;
           newLastMatchedId = newCards[firstIdx].totemId;
           
           if (newMatches === prev.gridSize / 2) {
             updatedStatus = 'finished';
           }
+
+          const currentBest = prev.bestScore;
+          const isNewBest = (currentBest === 0 || newScore < currentBest) && updatedStatus === 'finished';
 
           return {
             ...prev,
@@ -110,17 +117,19 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
             flippedIndices: [],
             matches: newMatches,
             score: newScore,
+            streak: newStreak,
             lastMatchedTotemId: newLastMatchedId,
             gameStatus: updatedStatus,
-            bestScore: (prev.bestScore === 0 || newScore < prev.bestScore) && updatedStatus === 'finished' ? newScore : prev.bestScore
+            bestScore: isNewBest ? newScore : currentBest
           };
         } else {
-          // No match, will reset after timeout in component
+          // MISMATCH
           return {
             ...prev,
             cards: newCards,
             flippedIndices: newFlippedIndices,
             score: newScore,
+            streak: 0, // Reset streak on miss
           };
         }
       }
@@ -134,7 +143,6 @@ export function GameProvider({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
-  // Effect to handle mismatched cards reset
   useEffect(() => {
     if (state.flippedIndices.length === 2) {
       const timer = setTimeout(() => {

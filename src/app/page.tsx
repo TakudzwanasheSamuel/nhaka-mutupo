@@ -3,7 +3,6 @@
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { Bird, Shield, Zap, Sparkles } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { useGame } from '@/context/GameContext';
 
 const DIFFICULTIES = [
@@ -38,11 +37,10 @@ const DIFFICULTIES = [
 
 export default function Home() {
   const router = useRouter();
-  const { startNewGame, bestScore } = useGame();
+  const { bestScore } = useGame();
 
-  const handleSelectDifficulty = (size: number) => {
-    startNewGame(size as any);
-    router.push(`/game?size=${size}`);
+  const handleSelectDifficulty = (id: string) => {
+    router.push(`/game/${id}`);
   };
 
   return (
@@ -89,8 +87,8 @@ export default function Home() {
             transition={{ delay: 0.2 + index * 0.1 }}
           >
             <button
-              onClick={() => handleSelectDifficulty(difficulty.size)}
-              className={`group relative w-full p-8 bg-card rounded-[2.5rem] border-2 border-white/5 hover:border-primary/40 transition-all duration-500 text-left overflow-hidden flex flex-col h-full`}
+              onClick={() => handleSelectDifficulty(difficulty.id)}
+              className="group relative w-full p-8 bg-card rounded-[2.5rem] border-2 border-white/5 hover:border-primary/40 transition-all duration-500 text-left overflow-hidden flex flex-col h-full"
             >
               {/* Background Glow */}
               <div className={`absolute inset-0 bg-gradient-to-br ${difficulty.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />

@@ -16,22 +16,23 @@ export function useAudio() {
     const ctx = audioCtxRef.current!;
     if (ctx.state === 'suspended') ctx.resume();
 
+    // Amapiano Log Drum Style
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     
-    // Log Drum characteristic: fast pitch drop + short decay
     osc.type = 'sine';
-    osc.frequency.setValueAtTime(150, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.15);
+    // Starting frequency around 120Hz dropping to 40Hz
+    osc.frequency.setValueAtTime(120, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.2);
 
-    gain.gain.setValueAtTime(0.8, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+    gain.gain.setValueAtTime(1, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start();
-    osc.stop(ctx.currentTime + 0.3);
+    osc.stop(ctx.currentTime + 0.4);
   }, [initAudio]);
 
   const playClick = useCallback(() => {
@@ -39,19 +40,22 @@ export function useAudio() {
     const ctx = audioCtxRef.current!;
     if (ctx.state === 'suspended') ctx.resume();
 
+    // Wood Click Sound
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
     
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(400, ctx.currentTime);
-    gain.gain.setValueAtTime(0.1, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.05);
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(400, ctx.currentTime + 0.05);
+
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
 
     osc.connect(gain);
     gain.connect(ctx.destination);
 
     osc.start();
-    osc.stop(ctx.currentTime + 0.05);
+    osc.stop(ctx.currentTime + 0.08);
   }, [initAudio]);
 
   return { playLogDrum, playClick };
