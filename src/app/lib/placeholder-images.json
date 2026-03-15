@@ -1,0 +1,10 @@
+{
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Abstract savanna landscape painting",
+      "imageUrl": "https://picsum.photos/seed/savanna/1200/600",
+      "imageHint": "savanna landscape"
+    }
+  ]
+}
