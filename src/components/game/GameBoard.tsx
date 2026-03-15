@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect } from 'react';
@@ -21,9 +20,9 @@ export function GameBoard() {
 
   useEffect(() => {
     if (gameStatus === 'finished') {
-      const duration = 5 * 1000;
+      const duration = 4 * 1000;
       const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+      const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0, colors: ['#ffd700', '#1b3f7a', '#ffffff'] };
 
       const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
 
@@ -34,7 +33,7 @@ export function GameBoard() {
           return clearInterval(interval);
         }
 
-        const particleCount = 50 * (timeLeft / duration);
+        const particleCount = 40 * (timeLeft / duration);
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
         confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
       }, 250);
@@ -48,25 +47,39 @@ export function GameBoard() {
   const gridCols = getGridDimensions(gridSize);
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-4 py-8">
-      <div className="flex justify-between items-center mb-8 bg-card p-4 rounded-xl shadow-sm border border-border">
-        <div className="text-center px-4 border-r border-border">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Moves</p>
-          <p className="text-2xl font-headline text-primary">{score}</p>
+    <div className="w-full max-w-5xl mx-auto px-2 sm:px-4 py-8">
+      {/* HUD */}
+      <div className="flex justify-around items-center mb-10 bg-card/40 backdrop-blur-sm p-6 rounded-3xl shadow-xl border border-white/10 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+        
+        <div className="text-center px-6">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-primary/70 font-bold mb-1">Rhythm</p>
+          <p className="text-3xl font-headline text-white">{score}</p>
         </div>
-        <div className="flex-1 text-center px-4">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Matches</p>
-          <p className="text-2xl font-headline text-primary">{matches} / {gridSize / 2}</p>
+        
+        <div className="h-10 w-[1px] bg-white/10" />
+        
+        <div className="text-center px-6">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-primary/70 font-bold mb-1">Spirit Bond</p>
+          <div className="flex flex-col items-center">
+             <p className="text-3xl font-headline text-white">{matches}</p>
+             <p className="text-[10px] text-white/40">of {gridSize / 2}</p>
+          </div>
         </div>
-        <div className="text-center px-4 border-l border-border">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Status</p>
-          <p className="text-lg font-headline text-secondary capitalize">{gameStatus}</p>
+
+        <div className="h-10 w-[1px] bg-white/10" />
+
+        <div className="text-center px-6 hidden sm:block">
+          <p className="text-[10px] uppercase tracking-[0.2em] text-primary/70 font-bold mb-1">Trial</p>
+          <p className="text-lg font-headline text-white/80 capitalize">
+            {gridSize === 16 ? 'Cub' : gridSize === 20 ? 'Hunter' : 'Elder'}
+          </p>
         </div>
       </div>
 
       <motion.div 
         layout
-        className={`grid ${gridCols} gap-2 sm:gap-4`}
+        className={`grid ${gridCols} gap-3 sm:gap-6`}
       >
         {cards.map((card, index) => (
           <TotemCard 
@@ -80,12 +93,22 @@ export function GameBoard() {
       
       {gameStatus === 'finished' && (
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mt-12 text-center p-8 bg-secondary/10 rounded-2xl border-2 border-secondary"
+          className="mt-16 text-center p-12 bg-primary/5 rounded-[3rem] border-2 border-primary/20 relative overflow-hidden"
         >
-          <h2 className="text-4xl font-headline text-primary mb-2">Makorokoto!</h2>
-          <p className="text-xl opacity-80 mb-6">You've completed the ritual in {score} moves.</p>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--primary)_0px,_transparent_120px)] opacity-10" />
+          <h2 className="text-5xl font-headline text-primary mb-4">Makorokoto!</h2>
+          <p className="text-2xl text-white/80 mb-2 font-headline">The spirits are pleased.</p>
+          <p className="text-white/40 mb-8 italic">You completed the ritual in {score} moves.</p>
+          <div className="flex justify-center gap-4">
+            <button 
+              onClick={() => window.location.reload()}
+              className="px-8 py-3 bg-primary text-background font-bold rounded-xl hover:scale-105 transition-transform"
+            >
+              Play Again
+            </button>
+          </div>
         </motion.div>
       )}
     </div>

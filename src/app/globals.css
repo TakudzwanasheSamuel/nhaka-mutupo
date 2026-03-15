@@ -4,48 +4,36 @@
 
 @layer base {
   :root {
-    --background: 30 20% 96%; /* #F7F3F0 */
-    --foreground: 15 40% 10%;
-    --card: 30 20% 98%;
-    --card-foreground: 15 40% 10%;
-    --popover: 30 20% 96%;
-    --popover-foreground: 15 40% 10%;
-    --primary: 14 41% 39%; /* #8C4E3A */
-    --primary-foreground: 30 20% 98%;
-    --secondary: 48 76% 47%; /* #D4B61C */
-    --secondary-foreground: 15 40% 10%;
-    --muted: 30 15% 90%;
-    --muted-foreground: 15 20% 40%;
-    --accent: 48 76% 47%;
-    --accent-foreground: 15 40% 10%;
+    --background: 220 68% 7%; /* #0b1b3a darkened slightly for depth */
+    --foreground: 220 10% 98%;
+    --card: 217 64% 29%; /* #1b3f7a - Surface */
+    --card-foreground: 220 10% 98%;
+    --popover: 217 64% 25%;
+    --popover-foreground: 220 10% 98%;
+    --primary: 51 100% 50%; /* #ffd700 - Gold Accent */
+    --primary-foreground: 220 68% 10%;
+    --secondary: 217 64% 40%;
+    --secondary-foreground: 220 10% 98%;
+    --muted: 217 30% 20%;
+    --muted-foreground: 220 10% 70%;
+    --accent: 51 100% 50%;
+    --accent-foreground: 220 68% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 14 20% 85%;
-    --input: 14 20% 85%;
-    --ring: 14 41% 39%;
+    --border: 217 64% 35%;
+    --input: 217 64% 35%;
+    --ring: 51 100% 50%;
     --radius: 0.75rem;
   }
 
   .dark {
-    --background: 15 40% 10%;
-    --foreground: 30 20% 96%;
-    --card: 15 40% 12%;
-    --card-foreground: 30 20% 96%;
-    --popover: 15 40% 10%;
-    --popover-foreground: 30 20% 96%;
-    --primary: 14 41% 50%;
-    --primary-foreground: 30 20% 98%;
-    --secondary: 48 76% 47%;
-    --secondary-foreground: 15 40% 10%;
-    --muted: 15 20% 20%;
-    --muted-foreground: 15 20% 70%;
-    --accent: 48 76% 47%;
-    --accent-foreground: 15 40% 10%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 15 20% 25%;
-    --input: 15 20% 25%;
-    --ring: 14 41% 50%;
+    /* Keeping it dark by default as per request */
+    --background: 220 68% 7%;
+    --foreground: 220 10% 98%;
+    --card: 217 64% 29%;
+    --card-foreground: 220 10% 98%;
+    --primary: 51 100% 50%;
+    --primary-foreground: 220 68% 10%;
   }
 }
 

@@ -35,23 +35,26 @@ export function TotemCard({ card, index, onClick }: TotemCardProps) {
         transition={{ duration: 0.6, type: 'spring', stiffness: 260, damping: 20 }}
         style={{ transformStyle: 'preserve-3d' }}
       >
-        {/* Front of Card (Totem) */}
+        {/* Front of Card (Totem revealed) */}
         <div 
           className={cn(
-            "absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-white border-2 border-primary rounded-lg flex flex-col items-center justify-center p-2 shadow-md",
-            card.isMatched && "border-secondary border-4 bg-secondary/5"
+            "absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-card border-2 border-white/10 rounded-xl flex flex-col items-center justify-center p-3 shadow-2xl",
+            card.isMatched && "border-primary/50 bg-primary/5 ring-1 ring-primary/20"
           )}
         >
           {totem && (
             <div className="w-full h-full flex flex-col items-center justify-between">
-              <div className="flex-1 w-full flex items-center justify-center text-primary">
-                <img 
-                  src={totem.svg} 
-                  alt={totem.name} 
-                  className="w-12 h-12 sm:w-16 sm:h-16 object-contain"
-                />
+              <div className="flex-1 w-full flex items-center justify-center">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-150 opacity-50" />
+                  <img 
+                    src={totem.svg} 
+                    alt={totem.name} 
+                    className="w-14 h-14 sm:w-20 sm:h-20 object-contain text-primary relative z-10 brightness-110"
+                  />
+                </div>
               </div>
-              <span className="text-[10px] sm:text-xs font-headline text-center leading-tight">
+              <span className="text-[10px] sm:text-xs font-headline text-center text-white/90 leading-tight px-1">
                 {totem.name}
               </span>
             </div>
@@ -59,14 +62,18 @@ export function TotemCard({ card, index, onClick }: TotemCardProps) {
         </div>
 
         {/* Back of Card (Pattern) */}
-        <div className="absolute inset-0 w-full h-full backface-hidden bg-primary rounded-lg flex items-center justify-center p-1 shadow-md border-2 border-white/20">
-          <div className="w-full h-full rounded-md border border-white/10 flex items-center justify-center overflow-hidden">
-             <div className="grid grid-cols-4 gap-1 opacity-20">
-                {Array.from({ length: 16 }).map((_, i) => (
-                  <div key={i} className="w-4 h-4 rounded-full border border-white" />
-                ))}
-             </div>
+        <div className="absolute inset-0 w-full h-full backface-hidden bg-card rounded-xl flex items-center justify-center p-2 shadow-lg border-2 border-white/10 overflow-hidden">
+          {/* Decorative Pattern */}
+          <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--primary)_1px,_transparent_1px)] bg-[length:20px_20px]" />
+          
+          <div className="w-full h-full rounded-lg border border-white/5 flex items-center justify-center relative z-10">
+            <div className="w-12 h-12 rounded-full border-2 border-primary/20 flex items-center justify-center">
+               <div className="w-6 h-6 bg-primary/10 rounded-sm rotate-45 border border-primary/20" />
+            </div>
           </div>
+          
+          {/* Subtle hover effect */}
+          <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300" />
         </div>
       </motion.div>
     </div>
