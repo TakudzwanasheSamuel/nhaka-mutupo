@@ -1,17 +1,23 @@
+
 {
-  "name": "Nhaka Mutupo",
-  "short_name": "Mutupo",
-  "description": "African Totem Memory Game",
+  "name": "Nhaka Mutupo | Totem Memory Game",
+  "short_name": "Nhaka Mutupo",
+  "description": "A traditional African totem matching game with generative praise poems.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0b1b3a",
-  "theme_color": "#ffd700",
+  "theme_color": "#0b1b3a",
   "icons": [
     {
-      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjUxMiIgaGVpZ2h0PSI1MTIiIHJ4PSI5NiIgZmlsbD0iIzBiMWIzYSIvPjxjaXJjbGUgY3g9IjI1NiIgY3k9IjI1NiIgcj0iMTYwIiBzdHJva2U9IiNmZmQ3MDAiIHN0cm9rZS13aWR0aD0iMzIiLz48cGF0aCBkPSJNMjU2IDk2VjQxNk05NiAyNTZINTQxNiIgZmlsbD0iI2ZmZDcwMCIvPjwvc3ZnPg==",
-      "sizes": "512x512",
-      "type": "image/svg+xml",
+      "src": "https://picsum.photos/seed/totem192/192/192",
+      "sizes": "192x192",
+      "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "https://picsum.photos/seed/totem512/512/512",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ]
 }

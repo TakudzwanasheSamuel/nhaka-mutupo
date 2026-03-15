@@ -1,8 +1,9 @@
+
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { GameProvider } from '@/context/GameContext';
 import { Header } from '@/components/layout/Header';
-import { NhetemboModal } from '@/components/game/NhetemboModal';
+import { MatchModal } from '@/components/game/MatchModal';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default function RootLayout({
           <footer className="py-6 text-center text-[10px] uppercase tracking-widest text-white/20 border-t border-white/5">
             &copy; {new Date().getFullYear()} Nhaka Mutupo &bull; Ancestral Wisdom
           </footer>
-          <NhetemboModal />
+          <MatchModal />
           <Toaster />
         </GameProvider>
       </body>
