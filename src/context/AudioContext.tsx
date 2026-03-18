@@ -7,7 +7,6 @@ import React, {
 const MUTE_KEY = 'nhaka_audio_muted';
 const LOOP_VOL = 0.3;
 const SFX_VOL = 0.55;
-const FADE_MS = 1400;
 
 const SFX_SRCS = [
   '/sounds/option-select.wav',
@@ -19,7 +18,6 @@ interface AudioManagerAPI {
   playClick: () => void;
   playMatch: () => void;
   playMismatch: () => void;
-  startLandingLoop: () => void;
   startGameLoop: () => void;
   stopGameLoop: () => void;
   stopAll: () => void;
@@ -33,10 +31,8 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   const [isMuted, setIsMuted] = useState(false);
 
   const mutedRef = useRef(false);
-  const landingRef = useRef<HTMLAudioElement | null>(null);
   const gameRef = useRef<HTMLAudioElement | null>(null);
-  const fadeTimer = useRef<ReturnType<typeof setInterval> | null>(null);
-  const activeLoop = useRef<'landing' | 'game' | null>(null);
+  const activeLoop = useRef<'game' | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem(MUTE_KEY);
@@ -44,12 +40,6 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
       setIsMuted(true);
       mutedRef.current = true;
     }
-  }, []);
-
-  useEffect(() => {
-    return () => {
-      if (fadeTimer.current) clearInterval(fadeTimer.current);
-    };
   }, []);
 
   const playSfx = useCallback((src: string) => {
@@ -65,70 +55,14 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   const playMatch = useCallback(() => playSfx(SFX_SRCS[1]), [playSfx]);
   const playMismatch = useCallback(() => playSfx(SFX_SRCS[2]), [playSfx]);
 
-  const startLandingLoop = useCallback(() => {
-    const el = landingRef.current;
-    if (!el || mutedRef.current) return;
-    if (!el.paused) return;
-    el.currentTime = 0;
-    el.volume = LOOP_VOL;
-    activeLoop.current = 'landing';
-    el.play().then(() => {
-      console.log('[Audio] Landing loop playing');
-    }).catch((err) => {
-      console.warn('[Audio] Landing loop blocked:', err?.message);
-      activeLoop.current = null;
-    });
-  }, []);
-
-  const crossfade = useCallback((from: HTMLAudioElement, to: HTMLAudioElement) => {
-    if (fadeTimer.current) {
-      clearInterval(fadeTimer.current);
-      fadeTimer.current = null;
-    }
-
-    to.currentTime = 0;
-    to.volume = 0;
-    to.play().catch(() => {});
-
-    const steps = 28;
-    const interval = FADE_MS / steps;
-    let step = 0;
-
-    fadeTimer.current = setInterval(() => {
-      step++;
-      const p = step / steps;
-      from.volume = Math.max(0, (1 - p) * LOOP_VOL);
-      to.volume = Math.min(LOOP_VOL, p * LOOP_VOL);
-
-      if (step >= steps) {
-        if (fadeTimer.current) clearInterval(fadeTimer.current);
-        fadeTimer.current = null;
-        from.pause();
-        from.currentTime = 0;
-      }
-    }, interval);
-  }, []);
-
   const startGameLoop = useCallback(() => {
     const game = gameRef.current;
     if (!game) return;
-
-    const landing = landingRef.current;
-
-    if (landing && !landing.paused) {
-      activeLoop.current = 'game';
-      crossfade(landing, game);
-    } else {
-      if (landing) {
-        landing.pause();
-        landing.currentTime = 0;
-      }
-      activeLoop.current = 'game';
-      game.currentTime = 0;
-      game.volume = LOOP_VOL;
-      if (!mutedRef.current) game.play().catch(() => {});
-    }
-  }, [crossfade]);
+    activeLoop.current = 'game';
+    game.currentTime = 0;
+    game.volume = LOOP_VOL;
+    if (!mutedRef.current) game.play().catch(() => {});
+  }, []);
 
   const stopGameLoop = useCallback(() => {
     if (gameRef.current) {
@@ -139,11 +73,6 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const stopAll = useCallback(() => {
-    if (fadeTimer.current) {
-      clearInterval(fadeTimer.current);
-      fadeTimer.current = null;
-    }
-    landingRef.current?.pause();
     gameRef.current?.pause();
     activeLoop.current = null;
   }, []);
@@ -155,17 +84,10 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
       localStorage.setItem(MUTE_KEY, String(next));
 
       if (next) {
-        landingRef.current?.pause();
         gameRef.current?.pause();
-      } else {
-        const loop = activeLoop.current;
-        if (loop === 'landing' && landingRef.current) {
-          landingRef.current.volume = LOOP_VOL;
-          landingRef.current.play().catch(() => {});
-        } else if (loop === 'game' && gameRef.current) {
-          gameRef.current.volume = LOOP_VOL;
-          gameRef.current.play().catch(() => {});
-        }
+      } else if (activeLoop.current === 'game' && gameRef.current) {
+        gameRef.current.volume = LOOP_VOL;
+        gameRef.current.play().catch(() => {});
       }
 
       return next;
@@ -175,12 +97,9 @@ export function AudioProvider({ children }: { children: React.ReactNode }) {
   return (
     <AudioCtx.Provider value={{
       playClick, playMatch, playMismatch,
-      startLandingLoop, startGameLoop, stopGameLoop, stopAll,
+      startGameLoop, stopGameLoop, stopAll,
       toggleMute, isMuted,
     }}>
-      {/* Real DOM audio elements — far more reliable than new Audio() */}
-      {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
-      <audio ref={landingRef} src="/sounds/landing-sound.mp3" loop preload="auto" />
       {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
       <audio ref={gameRef} src="/sounds/game-sound-loop.mp3" loop preload="auto" />
       {children}

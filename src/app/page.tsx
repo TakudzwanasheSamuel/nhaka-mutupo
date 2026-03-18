@@ -51,18 +51,9 @@ const DIFFICULTY_CARDS: {
 
 function LandingScreen() {
   const { difficulty, setDifficulty, startNewGame, bestScore } = useGame();
-  const { startLandingLoop, startGameLoop, playClick } = useAudioManager();
-  const landingStarted = useRef(false);
-
-  const ensureLandingAudio = () => {
-    if (!landingStarted.current) {
-      landingStarted.current = true;
-      startLandingLoop();
-    }
-  };
+  const { startGameLoop, playClick } = useAudioManager();
 
   const handleDifficultySelect = (id: Difficulty) => {
-    ensureLandingAudio();
     playClick();
     setDifficulty(id);
   };
@@ -73,10 +64,7 @@ function LandingScreen() {
   };
 
   return (
-    <div
-      className="flex-1 flex flex-col items-center justify-center px-4 py-6 overflow-y-auto"
-      onClick={ensureLandingAudio}
-    >
+    <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}

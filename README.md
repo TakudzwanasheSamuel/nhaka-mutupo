@@ -12,7 +12,7 @@
 - **Cultural Card Backs** — Great Zimbabwe chevron and basket-weave SVG patterns
 - **Framer Motion Animations** — Spring hover/tap effects on cards with match confetti bursts
 - **Typewriter Effect** — Praise poems revealed character-by-character in the match overlay
-- **Full Audio System** — Landing loop, game loop with crossfade transition, SFX for clicks/matches/mismatches, global mute toggle persisted in localStorage
+- **Full Audio System** — Game loop, SFX for clicks/matches/mismatches, global mute toggle persisted in localStorage
 - **Full-Viewport Layout** — h-screen flex layout with zero wasted space, responsive mobile stats header
 - **PWA Ready** — Installable with manifest, offline-capable asset strategy (inline SVG totems)
 - **SCORM Compatible** — Score and completion data structured for LMS integration
@@ -102,7 +102,6 @@ src/
         └── generate-praise-poem-on-match.ts  # Genkit AI flow
 public/
 ├── sounds/
-│   ├── landing-sound.mp3
 │   ├── game-sound-loop.mp3
 │   ├── option-select.wav
 │   ├── success-bell.wav
@@ -130,8 +129,7 @@ public/
 
 | Event | Sound |
 |---|---|
-| Landing screen (after first click) | `landing-sound.mp3` (loop) |
-| Game starts | Crossfade to `game-sound-loop.mp3` (loop) |
+| Game starts | `game-sound-loop.mp3` (loop) |
 | Card flip | `option-select.wav` |
 | Match found | `success-bell.wav` + confetti |
 | Mismatch | `wrong-answer-fail-notification.wav` |
