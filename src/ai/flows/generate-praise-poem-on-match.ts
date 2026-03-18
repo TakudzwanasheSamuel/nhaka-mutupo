@@ -35,7 +35,7 @@ const praisePoemPrompt = ai.definePrompt({
   prompt: `You are a wise griot, a storyteller and praise singer, specializing in traditional African 'Nhetembo' (Praise Poems).
 
 Generate a short, evocative praise poem (Nhetembo) in a few concise stanzas for the animal totem named: {{{animalTotemName}}}.
-Focus on the animal's characteristics, strengths, spirit, and its significance within nature and culture.
+Focus on the animal's characteristics, strengths, beauty, and its significance within nature and Zimbabwean culture.
 Make it inspiring and celebratory.
 
 Here is an example structure:

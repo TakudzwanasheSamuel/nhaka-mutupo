@@ -73,7 +73,7 @@ export function NhetemboModal() {
                   {isLoading ? (
                     <div className="flex flex-col items-center gap-4">
                       <div className="w-8 h-8 border-3 border-primary border-t-transparent rounded-full animate-spin" />
-                      <p className="text-xs not-italic font-body text-white/40 uppercase tracking-widest">Whispering to the ancestors...</p>
+                      <p className="text-xs not-italic font-body text-white/40 uppercase tracking-widest">Loading the Praise Poem...</p>
                     </div>
                   ) : (
                     <div className="space-y-6">

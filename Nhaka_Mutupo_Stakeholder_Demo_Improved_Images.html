@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Nhaka Mutupo – Totem Match (Stakeholder Demo)</title>
+<style>
+  :root{
+    --bg1:#0b1b3a; --bg2:#1b3f7a;
+    --card:#f7f7fb; --accent:#ffd700; --good:#22c55e; --bad:#ef4444;
+    --ink:#0f172a; --muted:#64748b; --panel:rgba(255,255,255,.10);
+    --shadow: 0 10px 25px rgba(0,0,0,.25);
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: radial-gradient(1000px 600px at 20% 10%, rgba(255,215,0,.12), transparent 60%),
+                linear-gradient(135deg, var(--bg1), var(--bg2));
+    color:#fff; min-height:100vh;
+  }
+  header{
+    max-width:1160px; margin: 18px auto 0; padding: 0 16px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  }
+  .brand{display:flex; align-items:center; gap:10px}
+  .logo{
+    width:44px; height:44px; border-radius:14px;
+    background: linear-gradient(135deg, rgba(255,215,0,.95), rgba(255,215,0,.55));
+    display:grid; place-items:center; color:#111; font-weight:900;
+    box-shadow: var(--shadow);
+  }
+  h1{font-size: 20px; margin:0}
+  .subtitle{margin:2px 0 0; font-size: 12px; color: rgba(255,255,255,.78)}
+  .controls{display:flex; align-items:center; gap:8px; flex-wrap:wrap}
+  select, button, .pill{
+    border: 1px solid rgba(255,255,255,.22);
+    background: rgba(255,255,255,.12);
+    color:#fff; padding:10px 12px; border-radius: 12px;
+    outline:none; backdrop-filter: blur(8px);
+  }
+  button{cursor:pointer; font-weight:800; transition: transform .08s ease, background .2s ease, border-color .2s ease}
+  button:hover{transform: translateY(-1px); border-color: rgba(255,255,255,.35)}
+  button.primary{background: rgba(255,215,0,.92); color:#111; border-color: rgba(255,215,0,.65)}
+  button.primary:hover{background: rgba(255,215,0,1)}
+  main{
+    max-width:1160px; margin: 14px auto 30px; padding: 0 16px;
+    display:grid; grid-template-columns: 370px 1fr; gap: 14px;
+  }
+  @media (max-width: 980px){ main{grid-template-columns: 1fr} }
+  .panel{
+    background: var(--panel);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 14px;
+  }
+  .stats{display:grid; grid-template-columns: 1fr 1fr; gap: 10px;}
+  .stat{
+    padding: 12px; border-radius: 14px;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .stat .k{font-size:12px; color: rgba(255,255,255,.75)}
+  .stat .v{font-size:18px; font-weight:900; margin-top:3px}
+  .badgeRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+  .badge{
+    display:flex; gap:10px; align-items:center;
+    padding:10px 12px; border-radius: 14px;
+    background: rgba(255,255,255,.10);
+    border: 1px dashed rgba(255,255,255,.22);
+    min-width: 170px;
+  }
+  .badge .bicon{
+    width:34px; height:34px; border-radius: 14px;
+    display:grid; place-items:center; font-size:18px;
+    background: rgba(255,255,255,.18);
+  }
+  .badge .btxt{font-size:12px; color: rgba(255,255,255,.85)}
+  .badge strong{display:block; font-size:13px; color:#fff}
+  .tips{
+    margin-top: 12px; font-size: 13px; color: rgba(255,255,255,.85); line-height:1.35;
+  }
+  .toast{
+    margin-top:10px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(0,0,0,.18);
+    font-size: 13px;
+    color: rgba(255,255,255,.92);
+  }
+  .boardWrap{padding: 14px}
+  .boardHeader{
+    display:flex; justify-content:space-between; align-items:center; gap: 10px; flex-wrap:wrap;
+    margin-bottom: 10px;
+  }
+  .boardHeader .title{font-weight:900}
+  .boardHeader .small{font-size:12px; color: rgba(255,255,255,.75)}
+  .board{
+    display:grid; gap: 10px; justify-content:center; user-select:none;
+  }
+  .card{
+    width: 96px; height: 104px;
+    border-radius: 18px;
+    background: rgba(247,247,251,.96);
+    border: 1px solid rgba(255,255,255,.65);
+    box-shadow: 0 12px 22px rgba(0,0,0,.22);
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; position:relative;
+    transform-style: preserve-3d;
+    transition: transform .22s ease, filter .2s ease;
+  }
+  .card:active{transform: scale(.99)}
+  .card.disabled{cursor:default; filter: grayscale(.15) brightness(.95)}
+  .face{
+    position:absolute; inset:0;
+    display:grid; place-items:center;
+    backface-visibility:hidden;
+    border-radius: 18px;
+  }
+  .front{
+    background: rgba(247,247,251,.98);
+    color: var(--ink);
+    transform: rotateY(180deg);
+    padding: 6px 6px 8px;
+  }
+  .back{
+    background: linear-gradient(135deg, rgba(255,215,0,.92), rgba(255,255,255,.55));
+    color:#111;
+    font-weight:900;
+    letter-spacing:.6px;
+  }
+  .card.flipped{transform: rotateY(180deg)}
+  .card.matched{
+    border-color: rgba(34,197,94,.75);
+    box-shadow: 0 14px 26px rgba(34,197,94,.18);
+  }
+  .totemWrap{
+    display:grid; place-items:center; gap: 4px;
+  }
+  .totemImg{
+    width: 60px; height: 60px;
+  }
+  .totemLabel{
+    font-size: 12px;
+    font-weight: 900;
+    color: rgba(15,23,42,.92);
+    letter-spacing:.2px;
+    line-height:1.1;
+  }
+  .totemLabel small{
+    display:block;
+    font-size: 11px;
+    font-weight: 800;
+    color: rgba(15,23,42,.74);
+    margin-top:2px;
+  }
+  .modalOverlay{
+    position:fixed; inset:0;
+    background: rgba(0,0,0,.55);
+    display:none; align-items:center; justify-content:center;
+    padding: 16px;
+  }
+  .modalOverlay.show{display:flex}
+  .modal{
+    width:min(760px, 100%);
+    background: rgba(12,22,48,.96);
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    padding: 18px;
+  }
+  .modal h2{margin:0 0 8px}
+  .modal .grid{display:grid; grid-template-columns: 1fr 1fr; gap: 10px}
+  @media (max-width: 720px){ .modal .grid{grid-template-columns:1fr} }
+  .modal .box{
+    padding: 12px; border-radius: 16px;
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+  }
+  .modal .actions{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; margin-top: 12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <div class="logo">NM</div>
+    <div>
+      <h1>Nhaka Mutupo</h1>
+      <div class="subtitle">Totem Match • Improved images + clearer names (offline-ready)</div>
+    </div>
+  </div>
+  <div class="controls">
+    <label class="pill">
+      Difficulty:
+      <select id="difficulty">
+        <option value="easy">Easy (4×4 • 8 pairs)</option>
+        <option value="medium" selected>Medium (4×5 • 10 pairs)</option>
+        <option value="hard">Hard (6×6 • 18 pairs)</option>
+      </select>
+    </label>
+    <button class="primary" id="startBtn">Start / Restart</button>
+    <button id="fullscreenBtn">Fullscreen</button>
+  </div>
+</header>
+
+<main>
+  <section class="panel">
+    <div class="stats">
+      <div class="stat"><div class="k">Time</div><div class="v" id="time">00:00</div></div>
+      <div class="stat"><div class="k">Score</div><div class="v" id="score">0</div></div>
+      <div class="stat"><div class="k">Moves</div><div class="v" id="moves">0</div></div>
+      <div class="stat"><div class="k">Matches</div><div class="v" id="matches">0</div></div>
+    </div>
+
+    <div class="badgeRow">
+      <div class="badge" id="badgeSpeed">
+        <div class="bicon">⏱️</div>
+        <div class="btxt"><strong>Speed</strong><span id="speedTxt">—</span></div>
+      </div>
+      <div class="badge" id="badgeAccuracy">
+        <div class="bicon">🎯</div>
+        <div class="btxt"><strong>Accuracy</strong><span id="accTxt">—</span></div>
+      </div>
+      <div class="badge" id="badgeMastery">
+        <div class="bicon">🏅</div>
+        <div class="btxt"><strong>Badge</strong><span id="badgeTxt">—</span></div>
+      </div>
+    </div>
+
+    <div class="tips">
+      <b>Presentation note:</b> Totem “names” are now bold and larger, with a clear animal name underneath.
+      Images are high‑contrast SVG illustrations (crisp on projector screens) and fully offline.
+      <br><br>
+      <b>How matching works:</b> same totem card matches the same totem card (as in the original game).
+    </div>
+
+    <div class="toast" id="toast">Tip: Use Medium (4×5) for stakeholder demos — quick but engaging.</div>
+  </section>
+
+  <section class="panel boardWrap">
+    <div class="boardHeader">
+      <div>
+        <div class="title">Game Board</div>
+        <div class="small">Improved animal illustrations + clear labels for each totem.</div>
+      </div>
+      <div class="small" id="sessionId"></div>
+    </div>
+    <div class="board" id="board" aria-label="Totem board"></div>
+    <div class="toast" id="status">Press <b>Start</b> to begin.</div>
+  </section>
+</main>
+
+<div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <h2>Congratulations 🎉</h2>
+    <div class="grid">
+      <div class="box">
+        <div style="opacity:.8;font-size:12px">Final Score</div>
+        <div style="font-size:28px;font-weight:900" id="finalScore">0</div>
+        <div style="opacity:.9;font-size:13px;margin-top:6px" id="finalBadge">—</div>
+      </div>
+      <div class="box">
+        <div style="display:grid;gap:6px;font-size:14px">
+          <div><b>Time:</b> <span id="finalTime">00:00</span></div>
+          <div><b>Moves:</b> <span id="finalMoves">0</span></div>
+          <div><b>Accuracy:</b> <span id="finalAcc">0%</span></div>
+          <div><b>Difficulty:</b> <span id="finalDiff">—</span></div>
+        </div>
+        <div style="margin-top:10px;font-size:12px;opacity:.85">
+          For SCORM deployments, score + completion can be sent to the LMS.
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="closeModal">Close</button>
+      <button class="primary" id="playAgain">Play again</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// --------------------- Improved Offline SVG "Animal Pictures" ---------------------
+function svgDataUri(svgString){
+  const encoded = encodeURIComponent(svgString.replace(/\s+/g,' ').trim())
+    .replace(/'/g,"%27").replace(/"/g,"%22");
+  return `data:image/svg+xml;charset=utf-8,${encoded}`;
+}
+
+// More variations (>= 18) to support hard mode without repetition.
+// Labels: Totem (bold) + Animal name (clear).
+const TOTEMS = [
+  { key:"shoko",  totem:"Shoko",  animal:"Monkey",   img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#8b5a2b"/><stop offset="1" stop-color="#c0843a"/></linearGradient></defs>
+    <circle cx="64" cy="68" r="38" fill="url(#g)"/><circle cx="36" cy="70" r="18" fill="#d4a373"/><circle cx="92" cy="70" r="18" fill="#d4a373"/>
+    <ellipse cx="64" cy="84" rx="28" ry="22" fill="#f7d9b4"/>
+    <circle cx="52" cy="66" r="4.5" fill="#111827"/><circle cx="76" cy="66" r="4.5" fill="#111827"/>
+    <path d="M54 90c6 8 14 8 20 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+    <path d="M64 74l6 6-6 6-6-6z" fill="#111827"/>
+  </svg>`)},
+  { key:"shumba", totem:"Shumba", animal:"Lion",     img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <defs><radialGradient id="m" cx="40%" cy="35%"><stop offset="0" stop-color="#ffd166"/><stop offset="1" stop-color="#b45309"/></radialGradient></defs>
+    <circle cx="64" cy="66" r="44" fill="url(#m)"/>
+    <circle cx="64" cy="72" r="26" fill="#fde68a" stroke="#92400e" stroke-width="4"/>
+    <circle cx="54" cy="70" r="4" fill="#111827"/><circle cx="74" cy="70" r="4" fill="#111827"/>
+    <path d="M58 86c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+    <path d="M64 78l7 7-7 7-7-7z" fill="#111827"/>
+    <path d="M30 48c10-20 22-30 34-30s24 10 34 30" fill="none" stroke="#7c2d12" stroke-width="10" stroke-linecap="round" opacity=".75"/>
+  </svg>`)},
+  { key:"nzou",   totem:"Nzou",   animal:"Elephant", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <defs><linearGradient id="e" x1="0" x2="1"><stop offset="0" stop-color="#94a3b8"/><stop offset="1" stop-color="#cbd5e1"/></linearGradient></defs>
+    <rect x="26" y="38" width="76" height="54" rx="26" fill="url(#e)" stroke="#64748b" stroke-width="4"/>
+    <ellipse cx="40" cy="68" rx="18" ry="16" fill="#94a3b8"/><ellipse cx="88" cy="68" rx="18" ry="16" fill="#94a3b8"/>
+    <circle cx="52" cy="62" r="4" fill="#111827"/><circle cx="76" cy="62" r="4" fill="#111827"/>
+    <path d="M78 76c0 22-12 30-20 30s-16-6-16-14 8-12 16-12c8 0 12-2 20-4z" fill="#64748b"/>
+    <path d="M22 64c-12 0-18-8-18-18s8-22 24-22" fill="none" stroke="#94a3b8" stroke-width="10" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"mbizi",  totem:"Mbizi",  animal:"Zebra",    img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <rect x="28" y="28" width="72" height="72" rx="36" fill="#f8fafc" stroke="#cbd5e1" stroke-width="4"/>
+    <path d="M44 28l14 72M58 28l10 72M72 28l10 72M86 28l-14 72" stroke="#111827" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="54" cy="66" r="4" fill="#111827"/><circle cx="74" cy="66" r="4" fill="#111827"/>
+    <path d="M58 84c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"gwai",   totem:"Gwai",   animal:"Sheep",    img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="68" r="40" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="4"/>
+    <circle cx="64" cy="78" r="26" fill="#cbd5e1"/>
+    <circle cx="54" cy="68" r="4" fill="#111827"/><circle cx="74" cy="68" r="4" fill="#111827"/>
+    <path d="M58 86c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+    <circle cx="30" cy="68" r="14" fill="#f1f5f9"/><circle cx="98" cy="68" r="14" fill="#f1f5f9"/>
+  </svg>`)},
+  { key:"hungwe", totem:"Hungwe", animal:"Fish Eagle", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <path d="M20 80c18-24 70-24 88 0" fill="#94a3b8"/><path d="M34 66c14-28 46-32 60 0" fill="#e2e8f0"/>
+    <circle cx="58" cy="66" r="4" fill="#111827"/><circle cx="70" cy="66" r="4" fill="#111827"/>
+    <path d="M64 72l10 6-10 6-10-6z" fill="#f59e0b"/>
+    <path d="M18 84c14 14 30 22 46 22s32-8 46-22" fill="none" stroke="#64748b" stroke-width="8" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"ngwena", totem:"Ngwena", animal:"Crocodile", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <path d="M20 74c18-22 72-26 92-6l-18 20c-26 16-50 12-74-14z" fill="#16a34a" stroke="#14532d" stroke-width="4"/>
+    <circle cx="86" cy="68" r="4" fill="#0f172a"/><path d="M52 66l12 8 12-8" fill="none" stroke="#0f172a" stroke-width="5" stroke-linecap="round"/>
+    <path d="M30 86l10-6 10 6 10-6 10 6" fill="none" stroke="#0f172a" stroke-width="4" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"nyati",  totem:"Nyati",  animal:"Buffalo",   img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="74" r="40" fill="#1f2937"/>
+    <path d="M40 52c-18-14-26-22-26-22" fill="none" stroke="#111827" stroke-width="10" stroke-linecap="round"/>
+    <path d="M88 52c18-14 26-22 26-22" fill="none" stroke="#111827" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="54" cy="72" r="4" fill="#f9fafb"/><circle cx="74" cy="72" r="4" fill="#f9fafb"/>
+    <path d="M58 90c6 6 12 6 18 0" fill="none" stroke="#f9fafb" stroke-width="5" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"mhofu",  totem:"Mhofu",  animal:"Eland",     img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <defs><linearGradient id="a" x1="0" x2="1"><stop offset="0" stop-color="#fb923c"/><stop offset="1" stop-color="#f59e0b"/></linearGradient></defs>
+    <circle cx="64" cy="74" r="40" fill="url(#a)"/>
+    <path d="M52 44c-6-18-18-28-30-32" fill="none" stroke="#7c2d12" stroke-width="6" stroke-linecap="round"/>
+    <path d="M76 44c6-18 18-28 30-32" fill="none" stroke="#7c2d12" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="54" cy="72" r="4" fill="#111827"/><circle cx="74" cy="72" r="4" fill="#111827"/>
+    <path d="M58 90c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"mhara",  totem:"Mhara",  animal:"Impala",    img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="74" r="40" fill="#fb923c" stroke="#7c2d12" stroke-width="4" opacity=".95"/>
+    <path d="M54 44c-10-22-20-34-34-40" fill="none" stroke="#7c2d12" stroke-width="6" stroke-linecap="round"/>
+    <path d="M74 44c10-22 20-34 34-40" fill="none" stroke="#7c2d12" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="54" cy="72" r="4" fill="#111827"/><circle cx="74" cy="72" r="4" fill="#111827"/>
+    <path d="M58 90c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"mbudzi", totem:"Mbudzi", animal:"Goat",      img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="72" r="40" fill="#d6d3d1" stroke="#78716c" stroke-width="4"/>
+    <path d="M46 50c-14-18-26-24-26-24" fill="none" stroke="#44403c" stroke-width="6" stroke-linecap="round"/>
+    <path d="M82 50c14-18 26-24 26-24" fill="none" stroke="#44403c" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="54" cy="70" r="4" fill="#111827"/><circle cx="74" cy="70" r="4" fill="#111827"/>
+    <path d="M58 88c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+    <path d="M50 96c10 10 18 10 28 0" fill="none" stroke="#44403c" stroke-width="6" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"dziva",  totem:"Dziva",  animal:"Hippopotamus", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <rect x="26" y="46" width="76" height="52" rx="26" fill="#a3a3a3" stroke="#525252" stroke-width="4"/>
+    <circle cx="54" cy="70" r="4" fill="#111827"/><circle cx="74" cy="70" r="4" fill="#111827"/>
+    <path d="M46 92h36" stroke="#111827" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="46" cy="92" r="8" fill="#737373"/><circle cx="82" cy="92" r="8" fill="#737373"/>
+    <path d="M26 74c-10 0-18-6-18-16s8-20 22-20" fill="none" stroke="#a3a3a3" stroke-width="10" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"dindingwe", totem:"Dindingwe", animal:"Cheetah", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="72" r="40" fill="#fbbf24" stroke="#92400e" stroke-width="4"/>
+    <circle cx="54" cy="70" r="4" fill="#111827"/><circle cx="74" cy="70" r="4" fill="#111827"/>
+    <path d="M58 88c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+    <g fill="#111827">
+      <circle cx="46" cy="58" r="2.2"/><circle cx="52" cy="54" r="2.2"/><circle cx="60" cy="52" r="2.2"/>
+      <circle cx="82" cy="58" r="2.2"/><circle cx="76" cy="54" r="2.2"/><circle cx="68" cy="52" r="2.2"/>
+      <circle cx="58" cy="66" r="2.2"/><circle cx="70" cy="66" r="2.2"/><circle cx="64" cy="60" r="2.2"/>
+    </g>
+  </svg>`)},
+  { key:"mhuka", totem:"Mhuka", animal:"Wild Animal", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <rect x="26" y="34" width="76" height="76" rx="28" fill="#60a5fa" stroke="#1d4ed8" stroke-width="4"/>
+    <path d="M44 86c10-18 30-18 40 0" fill="none" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="54" cy="66" r="4" fill="#0f172a"/><circle cx="74" cy="66" r="4" fill="#0f172a"/>
+    <path d="M64 72l6 6-6 6-6-6z" fill="#0f172a"/>
+  </svg>`)},
+  { key:"gudo", totem:"Gudo", animal:"Baboon", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="70" r="40" fill="#a16207" stroke="#78350f" stroke-width="4"/>
+    <ellipse cx="64" cy="82" rx="28" ry="22" fill="#fde68a" opacity=".95"/>
+    <circle cx="54" cy="68" r="4" fill="#111827"/><circle cx="74" cy="68" r="4" fill="#111827"/>
+    <path d="M56 92c6 6 10 6 16 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+    <path d="M40 62c-8 0-14 6-14 14" fill="none" stroke="#a16207" stroke-width="10" stroke-linecap="round" opacity=".7"/>
+    <path d="M88 62c8 0 14 6 14 14" fill="none" stroke="#a16207" stroke-width="10" stroke-linecap="round" opacity=".7"/>
+  </svg>`)},
+  { key:"mombe", totem:"Mombe", animal:"Cattle", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <rect x="30" y="44" width="68" height="60" rx="26" fill="#f5f5f4" stroke="#292524" stroke-width="4"/>
+    <path d="M44 50c-12-10-18-16-18-16" fill="none" stroke="#292524" stroke-width="8" stroke-linecap="round"/>
+    <path d="M84 50c12-10 18-16 18-16" fill="none" stroke="#292524" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="54" cy="72" r="4" fill="#111827"/><circle cx="74" cy="72" r="4" fill="#111827"/>
+    <path d="M56 92c6 6 12 6 18 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+    <path d="M48 62h32" stroke="#ef4444" stroke-width="6" stroke-linecap="round" opacity=".5"/>
+  </svg>`)},
+  { key:"huku", totem:"Huku", animal:"Chicken", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="76" r="38" fill="#f8fafc" stroke="#cbd5e1" stroke-width="4"/>
+    <path d="M50 46c-6-10 0-18 10-18" fill="none" stroke="#ef4444" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="56" cy="70" r="4" fill="#111827"/><path d="M66 72l12 6-12 6z" fill="#f59e0b"/>
+    <path d="M54 92c10 10 24 10 34 0" fill="none" stroke="#111827" stroke-width="5" stroke-linecap="round"/>
+  </svg>`)},
+  { key:"nyoka", totem:"Nyoka", animal:"Snake", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <path d="M30 92c20-24 10-52 34-56 22-4 34 10 34 26 0 18-18 24-28 14" fill="none" stroke="#16a34a" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="96" cy="60" r="4" fill="#111827"/><path d="M94 64l10 4-10 4z" fill="#ef4444"/>
+  </svg>`)},
+  { key:"gwayana", totem:"Gwayana", animal:"Guinea Fowl", img: svgDataUri(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+    <circle cx="64" cy="74" r="40" fill="#111827"/>
+    <g fill="#f8fafc" opacity=".9">
+      <circle cx="50" cy="62" r="3"/><circle cx="60" cy="58" r="3"/><circle cx="70" cy="58" r="3"/><circle cx="78" cy="62" r="3"/>
+      <circle cx="52" cy="74" r="3"/><circle cx="62" cy="70" r="3"/><circle cx="72" cy="70" r="3"/><circle cx="80" cy="74" r="3"/>
+      <circle cx="58" cy="84" r="3"/><circle cx="70" cy="84" r="3"/>
+    </g>
+    <circle cx="54" cy="70" r="4" fill="#f8fafc"/><path d="M64 72l12 6-12 6z" fill="#f59e0b"/>
+  </svg>`)}
+];
+
+// --------------------- Game State ---------------------
+const DIFFICULTIES = {
+  easy:   { rows:4, cols:4, pairs:8 },
+  medium: { rows:4, cols:5, pairs:10 },
+  hard:   { rows:6, cols:6, pairs:18 }
+};
+
+let state = {
+  started:false,
+  difficulty:"medium",
+  deck:[],
+  flipped:[],
+  moves:0,
+  matches:0,
+  mismatches:0,
+  streak:0,
+  score:0,
+  timerId:null,
+  startAt:null,
+  elapsedSec:0,
+  sessionId:""
+};
+
+const el = (id)=>document.getElementById(id);
+
+function fmtTime(sec){
+  const m = String(Math.floor(sec/60)).padStart(2,'0');
+  const s = String(sec%60).padStart(2,'0');
+  return `${m}:${s}`;
+}
+function shuffle(a){
+  for(let i=a.length-1;i>0;i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [a[i],a[j]]=[a[j],a[i]];
+  }
+  return a;
+}
+function computeAccuracy(){
+  const attempts = state.moves;
+  if(attempts === 0) return 0;
+  return Math.round((state.matches/attempts)*100);
+}
+function computeBadge(){
+  const d = DIFFICULTIES[state.difficulty];
+  const acc = computeAccuracy();
+  const t = state.elapsedSec;
+  const moves = state.moves;
+
+  const basePairs = d.pairs;
+  const goldTime = basePairs*6;
+  const silverTime = basePairs*9;
+  const bronzeTime = basePairs*12;
+
+  const goldMoves = Math.ceil(basePairs*1.15);
+  const silverMoves = Math.ceil(basePairs*1.45);
+  const bronzeMoves = Math.ceil(basePairs*1.80);
+
+  if(acc >= 90 && t <= goldTime && moves <= goldMoves) return {name:"Gold – Totem Master", icon:"🥇"};
+  if(acc >= 80 && t <= silverTime && moves <= silverMoves) return {name:"Silver – Skilled Matcher", icon:"🥈"};
+  if(acc >= 65 && t <= bronzeTime && moves <= bronzeMoves) return {name:"Bronze – Strong Effort", icon:"🥉"};
+  return {name:"Participant – Keep Practising", icon:"🎖️"};
+}
+function updateBadges(){
+  const acc = computeAccuracy();
+  const d = DIFFICULTIES[state.difficulty];
+  const speed = state.elapsedSec === 0 ? "—" : `${Math.round((d.pairs/state.elapsedSec)*60)} pairs/min`;
+  el("speedTxt").textContent = speed;
+  el("accTxt").textContent = state.started ? `${acc}%` : "—";
+  const b = state.started ? computeBadge() : {name:"—", icon:"🏅"};
+  el("badgeTxt").textContent = b.name;
+  document.getElementById("badgeMastery").querySelector(".bicon").textContent = b.icon;
+}
+function updateStats(){
+  el("moves").textContent = state.moves;
+  el("matches").textContent = state.matches;
+  el("score").textContent = Math.max(0, Math.round(state.score));
+  el("time").textContent = fmtTime(state.elapsedSec);
+  updateBadges();
+}
+function toast(msg){ el("status").innerHTML = msg; }
+
+function hash(str){
+  let h=0; for(let i=0;i<str.length;i++){ h=((h<<5)-h)+str.charCodeAt(i); h|=0; }
+  return (h>>>0).toString(16).padStart(8,'0');
+}
+function newSessionId(){
+  const raw = `${Date.now()}-${Math.random()}`;
+  return "NM-" + (hash(raw).slice(0,8)).toUpperCase();
+}
+
+function getTotemsForPairs(pairsNeeded){
+  // Use first N unique totems (we ensure we have at least 18 above).
+  return TOTEMS.slice(0, pairsNeeded);
+}
+
+function buildDeck(){
+  const d = DIFFICULTIES[state.difficulty];
+  const totems = getTotemsForPairs(d.pairs);
+  const cards = [];
+  totems.forEach(t=>{
+    cards.push({id: `${t.key}-a`, key:t.key, totem:t.totem, animal:t.animal, img:t.img});
+    cards.push({id: `${t.key}-b`, key:t.key, totem:t.totem, animal:t.animal, img:t.img});
+  });
+  shuffle(cards);
+  state.deck = cards;
+}
+
+function buildBoard(){
+  const d = DIFFICULTIES[state.difficulty];
+  const board = el("board");
+  board.innerHTML = "";
+  const cellW = (d.cols >= 6) ? 78 : 96;
+  const cellH = (d.cols >= 6) ? 88 : 104;
+  board.style.gridTemplateColumns = `repeat(${d.cols}, ${cellW}px)`;
+
+  state.deck.forEach((c, idx)=>{
+    const card = document.createElement("div");
+    card.className = "card";
+    card.style.width = `${cellW}px`;
+    card.style.height = `${cellH}px`;
+    card.setAttribute("role","button");
+    card.dataset.index = String(idx);
+    card.dataset.key = c.key;
+
+    const back = document.createElement("div");
+    back.className = "face back";
+    back.textContent = "NM";
+
+    const front = document.createElement("div");
+    front.className = "face front";
+
+    const wrap = document.createElement("div");
+    wrap.className = "totemWrap";
+
+    const img = document.createElement("img");
+    img.className = "totemImg";
+    img.alt = `${c.animal} (${c.totem})`;
+    img.src = c.img;
+
+    const label = document.createElement("div");
+    label.className = "totemLabel";
+    label.innerHTML = `${c.totem}<small>${c.animal}</small>`;
+
+    wrap.appendChild(img);
+    wrap.appendChild(label);
+    front.appendChild(wrap);
+
+    card.appendChild(back);
+    card.appendChild(front);
+
+    card.addEventListener("click", ()=>flipCard(card));
+    board.appendChild(card);
+  });
+}
+
+function startTimer(){
+  stopTimer();
+  state.startAt = Date.now();
+  state.timerId = setInterval(()=>{
+    state.elapsedSec = Math.floor((Date.now()-state.startAt)/1000);
+    state.score -= 0.25; // gentle time penalty
+    updateStats();
+  }, 1000);
+}
+function stopTimer(){
+  if(state.timerId){ clearInterval(state.timerId); state.timerId=null; }
+}
+
+function resetGame(){
+  state.started = true;
+  state.moves = 0;
+  state.matches = 0;
+  state.mismatches = 0;
+  state.streak = 0;
+  state.score = 500;
+  state.elapsedSec = 0;
+  state.flipped = [];
+  state.sessionId = newSessionId();
+  el("sessionId").textContent = `Session: ${state.sessionId}`;
+  buildDeck();
+  buildBoard();
+  updateStats();
+  toast("Find matching totem pairs. Good luck!");
+  startTimer();
+}
+
+function lockBoard(lock=true){
+  document.querySelectorAll(".card").forEach(c=>{
+    if(lock) c.classList.add("disabled");
+    else c.classList.remove("disabled");
+  });
+}
+
+function flipCard(cardEl){
+  if(!state.started) return;
+  if(cardEl.classList.contains("matched")) return;
+  if(cardEl.classList.contains("flipped")) return;
+  if(state.flipped.length === 2) return;
+
+  cardEl.classList.add("flipped");
+  state.flipped.push(cardEl);
+
+  if(state.flipped.length === 2){
+    state.moves++;
+    const [c1,c2] = state.flipped;
+    const match = (c1.dataset.key === c2.dataset.key);
+
+    if(match){
+      c1.classList.add("matched");
+      c2.classList.add("matched");
+      state.matches++;
+      state.streak++;
+      state.score += 40 + (state.streak*6);
+      state.flipped = [];
+      updateStats();
+      toast(`✅ Match! Streak: <b>${state.streak}</b>`);
+      if(state.matches === DIFFICULTIES[state.difficulty].pairs){
+        finishGame();
+      }
+    }else{
+      state.mismatches++;
+      state.streak = 0;
+      state.score -= 18;
+      updateStats();
+      toast("❌ Not a match. Try again.");
+      lockBoard(true);
+      setTimeout(()=>{
+        c1.classList.remove("flipped");
+        c2.classList.remove("flipped");
+        state.flipped = [];
+        lockBoard(false);
+      }, 750);
+    }
+  }
+}
+
+function finishGame(){
+  stopTimer();
+  const acc = computeAccuracy();
+  state.score += Math.max(0, (acc - 50) * 2);
+  state.score += Math.max(0, 120 - state.elapsedSec);
+  updateStats();
+
+  const badge = computeBadge();
+  const finalScore = Math.max(0, Math.round(state.score));
+
+  el("finalScore").textContent = String(finalScore);
+  el("finalTime").textContent = fmtTime(state.elapsedSec);
+  el("finalMoves").textContent = String(state.moves);
+  el("finalAcc").textContent = `${acc}%`;
+  el("finalDiff").textContent = el("difficulty").selectedOptions[0].textContent;
+  el("finalBadge").textContent = `${badge.icon} ${badge.name}`;
+
+  el("modalOverlay").classList.add("show");
+
+  // SCORM reporting (if available)
+  try{
+    if(window.SCORM && SCORM.isAvailable()){
+      SCORM.setScore(finalScore, 0, 1000);
+      SCORM.setStatus("completed");
+      SCORM.setSuspendData(JSON.stringify({
+        sessionId: state.sessionId,
+        difficulty: state.difficulty,
+        score: finalScore,
+        time: state.elapsedSec,
+        moves: state.moves,
+        accuracy: acc,
+        badge: badge.name
+      }));
+      SCORM.commit();
+    }
+  }catch(e){}
+}
+
+function closeModal(){ el("modalOverlay").classList.remove("show"); }
+
+document.getElementById("startBtn").addEventListener("click", ()=>{
+  state.difficulty = el("difficulty").value;
+  resetGame();
+});
+document.getElementById("difficulty").addEventListener("change", ()=>{
+  state.difficulty = el("difficulty").value;
+  toast("Difficulty changed. Press <b>Start / Restart</b> to apply.");
+});
+document.getElementById("closeModal").addEventListener("click", closeModal);
+document.getElementById("playAgain").addEventListener("click", ()=>{ closeModal(); resetGame(); });
+
+document.getElementById("fullscreenBtn").addEventListener("click", async ()=>{
+  try{
+    if(!document.fullscreenElement){
+      await document.documentElement.requestFullscreen();
+    }else{
+      await document.exitFullscreen();
+    }
+  }catch(e){}
+});
+
+// Init
+(function init(){
+  state.difficulty = el("difficulty").value;
+  state.sessionId = newSessionId();
+  el("sessionId").textContent = `Session: ${state.sessionId}`;
+  updateStats();
+  try{ if(window.SCORM && SCORM.isAvailable()){ SCORM.init(); } }catch(e){}
+})();
+</script>
+</body>
+</html>
