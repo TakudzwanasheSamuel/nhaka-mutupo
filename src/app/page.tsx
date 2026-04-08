@@ -64,15 +64,21 @@ function LandingScreen() {
   };
 
   return (
-    <div className="flex-1 flex flex-col items-center justify-center px-4 py-6 overflow-y-auto">
+    <div
+      className="flex-1 flex flex-col items-center justify-start min-h-0 w-full overflow-y-auto overflow-x-hidden overscroll-y-contain px-4 pb-10"
+      style={{
+        paddingTop: 'max(1.5rem, env(safe-area-inset-top, 0px))',
+        paddingBottom: 'max(2.5rem, env(safe-area-inset-bottom, 0px))',
+      }}
+    >
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="text-center max-w-3xl w-full"
+        className="text-center max-w-3xl w-full pt-2 sm:pt-4"
       >
-        {/* Badge pill */}
-        <div className="mb-5 inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-[0.25em]"
+        {/* Badge pill — extra vertical padding avoids ascender/descender clipping on older engines */}
+        <div className="mb-5 inline-flex items-center gap-2 px-4 py-2 rounded-full text-[10px] font-bold uppercase tracking-[0.25em] leading-normal"
           style={{
             background: 'rgba(255,215,0,0.10)',
             border: '1px solid rgba(255,215,0,0.25)',
@@ -83,9 +89,9 @@ function LandingScreen() {
           The Totem Challenge
         </div>
 
-        {/* Headline + Logo side-by-side */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 mb-4">
-          <h2 className="text-5xl sm:text-7xl lg:text-8xl font-headline text-white leading-[1.05] text-center sm:text-right">
+        {/* Headline + Logo — padding + loose line-height prevent top clipping in legacy flex/overflow */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 sm:gap-8 mb-4 py-6 sm:py-8 px-1 sm:px-2">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-headline text-white leading-[1.18] sm:leading-[1.12] text-center sm:text-right py-1">
             Discover Your{' '}
             <br />
             <span className="italic" style={{ color: 'rgb(255,215,0)' }}>Heritage</span>
@@ -95,10 +101,10 @@ function LandingScreen() {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.15, type: 'spring', stiffness: 180, damping: 16 }}
-            className="relative shrink-0"
+            className="relative shrink-0 my-2"
           >
             <div
-              className="absolute inset-0 scale-[1.7] rounded-full pointer-events-none"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] max-w-[200px] max-h-[200px] sm:max-w-[260px] sm:max-h-[260px] lg:max-w-[320px] lg:max-h-[320px] rounded-full pointer-events-none"
               style={{ background: 'radial-gradient(circle, rgba(255,215,0,0.22), transparent 60%)' }}
             />
             <motion.div
