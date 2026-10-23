@@ -1,0 +1,92 @@
+rules_version = '2';
+
+// Nhaka Mutupo security rules.
+// Children read verified content, plus entries waiting for review while an admin has
+// "show entries waiting for review" switched on. Everything else needs an approved account.
+// Paste into Firebase console > Firestore Database > Rules, or deploy with:
+//   npx firebase-tools deploy --only firestore:rules
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Keep in step with BOOTSTRAP_ADMINS in src/lib/firebase/config.ts.
+    function adminEmails() { return ['takudzwanashesamuel@gmail.com']; }
+
+    function signedIn() { return request.auth != null; }
+    function profilePath() { return /databases/$(database)/documents/users/$(request.auth.uid); }
+    function role() {
+      return signedIn() && exists(profilePath()) ? get(profilePath()).data.role : 'none';
+    }
+    function isAdmin() { return role() == 'admin'; }
+    function isReviewer() { return role() == 'reviewer' || role() == 'admin'; }
+    function validStatus(s) { return s in ['pending', 'verified', 'unresolved']; }
+    function showPending() {
+      return exists(/databases/$(database)/documents/settings/public)
+        && get(/databases/$(database)/documents/settings/public).data.showPending == true;
+    }
+    function publiclyVisible(status) {
+      return status == 'verified' || (status == 'pending' && showPending());
+    }
+
+    // People. New accounts start as "pending" until an admin approves them.
+    match /users/{uid} {
+      allow read: if (signedIn() && request.auth.uid == uid) || isAdmin();
+      allow create: if signedIn() && request.auth.uid == uid
+        && request.resource.data.uid == uid
+        && (request.resource.data.role == 'pending'
+            || (request.resource.data.role == 'admin' && request.auth.token.email in adminEmails()));
+      // People may edit their own name but never their own role.
+      allow update: if isAdmin()
+        || (signedIn() && request.auth.uid == uid && request.resource.data.role == resource.data.role);
+      allow delete: if isAdmin();
+    }
+
+    // Totem entries. The game reads verified ones; reviewers read and edit everything.
+    match /totems/{id} {
+      allow read: if publiclyVisible(resource.data.status) || isReviewer();
+      allow create, update: if isReviewer() && validStatus(request.resource.data.status)
+        && request.resource.data.id == id;
+      allow delete: if isAdmin();
+
+      match /notes/{noteId} {
+        allow read: if isReviewer();
+        allow create: if isReviewer() && request.resource.data.authorId == request.auth.uid
+          && request.resource.data.text is string && request.resource.data.text.size() < 4000;
+        allow delete: if isAdmin() || (isReviewer() && resource.data.authorId == request.auth.uid);
+      }
+    }
+
+    // Pictures (animals and symbols), with the same rules as entries.
+    match /pictures/{id} {
+      allow read: if publiclyVisible(resource.data.status) || isReviewer();
+      allow create, update: if isReviewer() && validStatus(request.resource.data.status)
+        && request.resource.data.id == id;
+      allow delete: if isAdmin();
+    }
+
+    // Site-wide settings, read by the game. Only admins change them.
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Sources are public so the game can credit them.
+    match /sources/{id} {
+      allow read: if true;
+      allow create, update: if isReviewer();
+      allow delete: if isAdmin();
+    }
+
+    // Pronunciation recordings: anyone can listen, reviewers record.
+    match /audio/{id} {
+      allow read: if true;
+      allow write: if isReviewer();
+    }
+
+    // Change history: reviewers can read; entries are added, never edited.
+    match /history/{id} {
+      allow read: if isReviewer();
+      allow create: if isReviewer() && request.resource.data.by == request.auth.uid;
+    }
+  }
+}

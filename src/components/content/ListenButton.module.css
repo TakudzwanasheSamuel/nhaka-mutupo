@@ -1,0 +1,25 @@
+.listen {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: var(--tap);
+  padding: 0 18px 0 14px;
+  border-radius: 999px;
+  background: var(--teal-soft);
+  color: var(--teal-press);
+  border: 2px solid #a9d9d4;
+  font-family: var(--font-display-stack);
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.listen[data-compact='true'] {
+  width: var(--tap);
+  padding: 0;
+  justify-content: center;
+}
+
+.listen[data-playing='true'] {
+  background: var(--teal);
+  color: #fff;
+}

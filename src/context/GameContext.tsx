@@ -1,296 +1,171 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, useCallback, useRef } from 'react';
-import { CardState, Difficulty, DIFFICULTIES, getGameDeck } from '@/constants/totems';
+import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { CardState, Difficulty, LEVELS, PlayMode, buildDeck, starsFor } from '@/constants/totems';
+import { useApp } from '@/context/AppContext';
+import { useContent } from '@/context/ContentContext';
+import { memoryEntries } from '@/lib/content';
+
+/** How long two different cards stay face up before turning back. */
+const MISS_DELAY_MS = 1100;
+
+export type Feedback =
+  | { kind: 'hint' }
+  | { kind: 'miss'; tick: number }
+  | { kind: 'match'; totemId: string; tick: number };
 
 interface GameState {
-  difficulty: Difficulty;
+  level: Difficulty;
+  mode: PlayMode;
   cards: CardState[];
-  flippedIndices: number[];
-  moves: number;
-  matches: number;
-  mismatches: number;
-  streak: number;
-  score: number;
-  gameStatus: 'idle' | 'playing' | 'finished';
+  open: number[];
+  tries: number;
+  pairsFound: number;
+  status: 'idle' | 'playing' | 'won';
+  startedAt: number;
   elapsedSec: number;
-  sessionId: string;
-  lastMatchedTotemId: string | null;
-  bestScore: number;
-  statusMessage: string;
+  stars: number;
+  feedback: Feedback;
+  /** A totem matched for the first time ever: shown in the "new totem" sheet. */
+  newTotem: string | null;
 }
 
-interface BadgeResult {
-  name: string;
-  icon: string;
+interface GameContextValue extends GameState {
+  totalPairs: number;
+  start: (level: Difficulty, mode: PlayMode) => void;
+  restart: () => void;
+  flip: (index: number) => void;
+  closeNewTotem: () => void;
+  leave: () => void;
 }
 
-interface GameContextType extends GameState {
-  startNewGame: () => void;
-  flipCard: (index: number) => void;
-  setDifficulty: (d: Difficulty) => void;
-  clearLastMatch: () => void;
-  computeAccuracy: () => number;
-  computeBadge: () => BadgeResult;
-  gridSize: number;
-}
+const INITIAL: GameState = {
+  level: 'easy',
+  mode: 'pictures',
+  cards: [],
+  open: [],
+  tries: 0,
+  pairsFound: 0,
+  status: 'idle',
+  startedAt: 0,
+  elapsedSec: 0,
+  stars: 0,
+  feedback: { kind: 'hint' },
+  newTotem: null,
+};
 
-const GameContext = createContext<GameContextType | undefined>(undefined);
-
-const STORAGE_KEY = 'nhaka_mutupo_v3';
-
-function generateSessionId(): string {
-  const raw = `${Date.now()}-${Math.random()}`;
-  let h = 0;
-  for (let i = 0; i < raw.length; i++) {
-    h = ((h << 5) - h) + raw.charCodeAt(i);
-    h |= 0;
-  }
-  return 'NM-' + ((h >>> 0).toString(16).padStart(8, '0')).toUpperCase().slice(0, 8);
-}
+const GameContext = createContext<GameContextValue | null>(null);
 
 export function GameProvider({ children }: { children: React.ReactNode }) {
-  const [state, setState] = useState<GameState>({
-    difficulty: 'medium',
-    cards: [],
-    flippedIndices: [],
-    moves: 0,
-    matches: 0,
-    mismatches: 0,
-    streak: 0,
-    score: 0,
-    gameStatus: 'idle',
-    elapsedSec: 0,
-    sessionId: '',
-    lastMatchedTotemId: null,
-    bestScore: 0,
-    statusMessage: 'Press <b>Start</b> to begin.',
-  });
+  const { discovered, discover, recordStars } = useApp();
+  const { content, includePending } = useContent();
+  const [state, setState] = useState<GameState>(INITIAL);
+  const ref = useRef(state);
+  const missTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-  const startTimeRef = useRef<number | null>(null);
-
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setState(prev => ({ ...prev, bestScore: parsed.bestScore || 0 }));
-      } catch { /* noop */ }
-    }
-    setState(prev => ({ ...prev, sessionId: generateSessionId() }));
+  const commit = useCallback((next: GameState) => {
+    ref.current = next;
+    setState(next);
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify({ bestScore: state.bestScore }));
-  }, [state.bestScore]);
+  const clearMissTimer = () => {
+    if (missTimer.current) clearTimeout(missTimer.current);
+    missTimer.current = null;
+  };
 
-  const stopTimer = useCallback(() => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-  }, []);
+  useEffect(() => clearMissTimer, []);
 
-  const startTimer = useCallback(() => {
-    stopTimer();
-    startTimeRef.current = Date.now();
-    timerRef.current = setInterval(() => {
-      if (!startTimeRef.current) return;
-      const elapsed = Math.floor((Date.now() - startTimeRef.current) / 1000);
-      setState(prev => {
-        if (prev.gameStatus !== 'playing') return prev;
-        return {
-          ...prev,
-          elapsedSec: elapsed,
-          score: prev.score - 0.25,
-        };
+  const start = useCallback(
+    (level: Difficulty, mode: PlayMode) => {
+      clearMissTimer();
+      const playMode = LEVELS[level].allowsWords ? mode : 'pictures';
+      commit({
+        ...INITIAL,
+        level,
+        mode: playMode,
+        cards: buildDeck(memoryEntries(content, includePending), level, playMode, discovered),
+        status: 'playing',
+        startedAt: Date.now(),
       });
-    }, 1000);
-  }, [stopTimer]);
+    },
+    [commit, discovered, content, includePending],
+  );
 
-  useEffect(() => {
-    return () => stopTimer();
-  }, [stopTimer]);
+  const restart = useCallback(() => start(ref.current.level, ref.current.mode), [start]);
 
-  const computeAccuracy = useCallback((): number => {
-    if (state.moves === 0) return 0;
-    return Math.round((state.matches / state.moves) * 100);
-  }, [state.matches, state.moves]);
+  const leave = useCallback(() => {
+    clearMissTimer();
+    commit(INITIAL);
+  }, [commit]);
 
-  const computeBadge = useCallback((): BadgeResult => {
-    const d = DIFFICULTIES[state.difficulty];
-    const acc = state.moves === 0 ? 0 : Math.round((state.matches / state.moves) * 100);
-    const t = state.elapsedSec;
-    const moves = state.moves;
-    const basePairs = d.pairs;
+  const closeNewTotem = useCallback(() => commit({ ...ref.current, newTotem: null }), [commit]);
 
-    const goldTime = basePairs * 6;
-    const silverTime = basePairs * 9;
-    const bronzeTime = basePairs * 12;
+  const flip = useCallback(
+    (index: number) => {
+      const s = ref.current;
+      if (s.status !== 'playing' || s.newTotem || s.open.length >= 2) return;
+      const card = s.cards[index];
+      if (!card || card.isFlipped || card.isMatched) return;
 
-    const goldMoves = Math.ceil(basePairs * 1.15);
-    const silverMoves = Math.ceil(basePairs * 1.45);
-    const bronzeMoves = Math.ceil(basePairs * 1.80);
+      const cards = s.cards.map((c, i) => (i === index ? { ...c, isFlipped: true } : c));
+      const open = [...s.open, index];
 
-    if (acc >= 90 && t <= goldTime && moves <= goldMoves)
-      return { name: 'Gold \u2013 Totem Master', icon: '\uD83E\uDD47' };
-    if (acc >= 80 && t <= silverTime && moves <= silverMoves)
-      return { name: 'Silver \u2013 Skilled Matcher', icon: '\uD83E\uDD48' };
-    if (acc >= 65 && t <= bronzeTime && moves <= bronzeMoves)
-      return { name: 'Bronze \u2013 Strong Effort', icon: '\uD83E\uDD49' };
-    return { name: 'Participant \u2013 Keep Practising', icon: '\uD83C\uDF96\uFE0F' };
-  }, [state.difficulty, state.matches, state.moves, state.elapsedSec]);
-
-  const setDifficulty = useCallback((d: Difficulty) => {
-    setState(prev => ({
-      ...prev,
-      difficulty: d,
-      statusMessage: 'Difficulty changed. Press <b>Start / Restart</b> to apply.',
-    }));
-  }, []);
-
-  const startNewGame = useCallback(() => {
-    const newCards = getGameDeck(state.difficulty);
-    const sid = generateSessionId();
-    setState(prev => ({
-      ...prev,
-      cards: newCards,
-      flippedIndices: [],
-      moves: 0,
-      matches: 0,
-      mismatches: 0,
-      streak: 0,
-      score: 500,
-      gameStatus: 'playing',
-      elapsedSec: 0,
-      sessionId: sid,
-      lastMatchedTotemId: null,
-      statusMessage: 'Find matching totem pairs. Good luck!',
-    }));
-    startTimer();
-  }, [state.difficulty, startTimer]);
-
-  const clearLastMatch = useCallback(() => {
-    setState(prev => ({ ...prev, lastMatchedTotemId: null }));
-  }, []);
-
-  const finishGame = useCallback((prev: GameState): GameState => {
-    stopTimer();
-    const acc = prev.moves === 0 ? 0 : Math.round((prev.matches / prev.moves) * 100);
-    let finalScore = prev.score;
-    finalScore += Math.max(0, (acc - 50) * 2);
-    finalScore += Math.max(0, 120 - prev.elapsedSec);
-    const roundedScore = Math.max(0, Math.round(finalScore));
-    const newBest = roundedScore > prev.bestScore ? roundedScore : prev.bestScore;
-
-    return {
-      ...prev,
-      score: roundedScore,
-      gameStatus: 'finished',
-      bestScore: newBest,
-      statusMessage: 'Game complete!',
-    };
-  }, [stopTimer]);
-
-  const flipCard = useCallback((index: number) => {
-    setState(prev => {
-      if (prev.gameStatus !== 'playing') return prev;
-      if (prev.flippedIndices.length === 2) return prev;
-      if (prev.cards[index].isFlipped || prev.cards[index].isMatched) return prev;
-
-      const newFlipped = [...prev.flippedIndices, index];
-      const newCards = [...prev.cards];
-      newCards[index] = { ...newCards[index], isFlipped: true };
-
-      if (newFlipped.length === 2) {
-        const [i1, i2] = newFlipped;
-        const isMatch = newCards[i1].totemId === newCards[i2].totemId;
-        const newMoves = prev.moves + 1;
-
-        if (isMatch) {
-          newCards[i1] = { ...newCards[i1], isMatched: true };
-          newCards[i2] = { ...newCards[i2], isMatched: true };
-          const newMatches = prev.matches + 1;
-          const newStreak = prev.streak + 1;
-          const scoreGain = 40 + (newStreak * 6);
-          const totalPairs = DIFFICULTIES[prev.difficulty].pairs;
-
-          let next: GameState = {
-            ...prev,
-            cards: newCards,
-            flippedIndices: [],
-            moves: newMoves,
-            matches: newMatches,
-            streak: newStreak,
-            score: prev.score + scoreGain,
-            lastMatchedTotemId: newCards[i1].totemId,
-            statusMessage: `\u2705 Match! Streak: <b>${newStreak}</b>`,
-          };
-
-          if (newMatches === totalPairs) {
-            next = finishGame(next);
-          }
-          return next;
-        } else {
-          return {
-            ...prev,
-            cards: newCards,
-            flippedIndices: newFlipped,
-            moves: newMoves,
-            mismatches: prev.mismatches + 1,
-            streak: 0,
-            score: prev.score - 18,
-            statusMessage: '\u274C Not a match. Try again.',
-          };
-        }
+      if (open.length < 2) {
+        commit({ ...s, cards, open });
+        return;
       }
 
-      return {
-        ...prev,
-        cards: newCards,
-        flippedIndices: newFlipped,
-      };
-    });
-  }, [finishGame]);
+      const [a, b] = open;
+      const tries = s.tries + 1;
+      const tick = Date.now();
 
-  useEffect(() => {
-    if (state.flippedIndices.length === 2) {
-      const timer = setTimeout(() => {
-        setState(prev => {
-          const newCards = [...prev.cards];
-          prev.flippedIndices.forEach(idx => {
-            if (!newCards[idx].isMatched) {
-              newCards[idx] = { ...newCards[idx], isFlipped: false };
-            }
-          });
-          return { ...prev, cards: newCards, flippedIndices: [] };
+      if (cards[a].totemId === cards[b].totemId) {
+        const totemId = cards[a].totemId;
+        const matched = cards.map((c, i) => (i === a || i === b ? { ...c, isMatched: true } : c));
+        const pairsFound = s.pairsFound + 1;
+        const isNew = discover(totemId);
+        const won = pairsFound === LEVELS[s.level].pairs;
+        const stars = won ? starsFor(s.level, tries) : 0;
+        if (won) recordStars(s.level, stars);
+        commit({
+          ...s,
+          cards: matched,
+          open: [],
+          tries,
+          pairsFound,
+          feedback: { kind: 'match', totemId, tick },
+          newTotem: isNew ? totemId : null,
+          status: won ? 'won' : 'playing',
+          elapsedSec: won ? Math.round((Date.now() - s.startedAt) / 1000) : 0,
+          stars,
         });
-      }, 750);
-      return () => clearTimeout(timer);
-    }
-  }, [state.flippedIndices]);
+        return;
+      }
 
-  const gridSize = DIFFICULTIES[state.difficulty].pairs * 2;
-
-  return (
-    <GameContext.Provider value={{
-      ...state,
-      gridSize,
-      startNewGame,
-      flipCard,
-      setDifficulty,
-      clearLastMatch,
-      computeAccuracy,
-      computeBadge,
-    }}>
-      {children}
-    </GameContext.Provider>
+      commit({ ...s, cards, open, tries, feedback: { kind: 'miss', tick } });
+      clearMissTimer();
+      missTimer.current = setTimeout(() => {
+        const cur = ref.current;
+        commit({
+          ...cur,
+          open: [],
+          cards: cur.cards.map((c, i) => (open.includes(i) && !c.isMatched ? { ...c, isFlipped: false } : c)),
+        });
+      }, MISS_DELAY_MS);
+    },
+    [commit, discover, recordStars],
   );
+
+  const value = useMemo(
+    () => ({ ...state, totalPairs: LEVELS[state.level].pairs, start, restart, flip, closeNewTotem, leave }),
+    [state, start, restart, flip, closeNewTotem, leave],
+  );
+
+  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
 }
 
 export function useGame() {
-  const context = useContext(GameContext);
-  if (!context) throw new Error('useGame must be used within GameProvider');
-  return context;
+  const ctx = useContext(GameContext);
+  if (!ctx) throw new Error('useGame must be used within GameProvider');
+  return ctx;
 }

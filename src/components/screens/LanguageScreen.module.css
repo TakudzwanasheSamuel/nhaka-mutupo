@@ -1,0 +1,134 @@
+.screen {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+}
+
+.top {
+  padding: 12px var(--gutter) 0;
+}
+
+.body {
+  flex: 1;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 16px var(--gutter) 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.mascot {
+  width: 150px;
+  height: auto;
+  animation: rise-in 0.5s ease both;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-2xl);
+  text-align: center;
+}
+
+.titleSub {
+  font-family: var(--font-read-stack);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.options {
+  width: 100%;
+  display: grid;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 88px;
+  padding: 14px 16px 14px 22px;
+  text-align: left;
+  background: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 0 var(--line);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, border-color 0.15s ease;
+  animation: rise-in 0.45s ease both;
+}
+
+.option:nth-child(2) {
+  animation-delay: 0.06s;
+}
+
+.option:nth-child(3) {
+  animation-delay: 0.12s;
+}
+
+.option:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.option[data-selected='true'] {
+  border-color: var(--teal);
+  box-shadow: 0 4px 0 var(--teal-press);
+}
+
+.optionText {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.optionTitle {
+  font-family: var(--font-display-stack);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.sample {
+  display: flex;
+}
+
+.sampleChip {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 4px 14px;
+  border-radius: 10px;
+  background: var(--teal-soft);
+  color: var(--teal-press);
+  font-family: var(--font-display-stack);
+  font-size: var(--text-md);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.sampleSub {
+  font-family: var(--font-read-stack);
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
+.optionIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fff;
+}

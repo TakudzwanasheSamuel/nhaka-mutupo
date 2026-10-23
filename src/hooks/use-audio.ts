@@ -1,3 +1,3 @@
 "use client";
 
-export { useAudioManager as useAudio } from '@/context/AudioContext';
+export { useAudio } from '@/context/AudioContext';

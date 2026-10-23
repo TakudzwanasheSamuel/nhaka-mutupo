@@ -1,0 +1,156 @@
+.screen {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--cream);
+}
+
+/* ── Top bar ───────────────────── */
+
+.topBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 10px var(--gutter);
+}
+
+.progress {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.progressLabel {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.progressText {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink-soft);
+  line-height: 1.2;
+}
+
+.count {
+  font-family: var(--font-display-stack);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/* ── Board: always fits the screen, never scrolls ───────────────────── */
+
+.boardArea {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 6px var(--gutter);
+}
+
+.board {
+  display: grid;
+  justify-content: center;
+  animation: fade-in 0.3s ease both;
+}
+
+/* ── Feedback strip, in thumb reach ───────────────────── */
+
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 72px;
+  margin: 4px var(--gutter) calc(12px + env(safe-area-inset-bottom, 0px));
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (min-width: 640px) {
+  .feedback {
+    width: min(560px, calc(100% - 32px));
+    margin-inline: auto;
+  }
+}
+
+.feedback[data-kind='miss'] {
+  background: var(--amber-soft);
+  border-color: #f1c66b;
+}
+
+.feedback[data-kind='match'] {
+  background: var(--leaf-soft);
+  border-color: #9fd6b2;
+}
+
+.feedback > * {
+  animation: rise-in 0.25s ease both;
+}
+
+.feedbackIcon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--teal-soft);
+  color: var(--teal-press);
+}
+
+.feedback[data-kind='miss'] .feedbackIcon {
+  background: #ffd98a;
+  color: var(--gold-deep);
+}
+
+.feedbackText {
+  align-items: flex-start;
+}
+
+.feedbackArt {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+/* ── Menu and confirm ───────────────────── */
+
+.sheetTitle {
+  font-size: var(--text-2xl);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.menuActions {
+  display: grid;
+  gap: 14px;
+}
+
+.confirm {
+  text-align: center;
+}
+
+.confirmBody {
+  margin: -4px 0 20px;
+  font-size: var(--text-md);
+}

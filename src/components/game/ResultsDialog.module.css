@@ -1,0 +1,120 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.title {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--teal-press);
+}
+
+.sub {
+  font-size: var(--text-lg);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.stat {
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 2px solid var(--line);
+}
+
+.stat dt {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.stat dd {
+  margin: 2px 0 0;
+  font-family: var(--font-display-stack);
+  font-size: var(--text-2xl);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.found {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.foundTitle {
+  font-family: var(--font-read-stack);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.foundList {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.foundList img {
+  width: 48px;
+  height: 48px;
+}
+
+.actions {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+  margin-top: 12px;
+}
+
+.stars svg {
+  width: clamp(44px, 8dvh, 64px);
+  height: clamp(44px, 8dvh, 64px);
+}
+
+/* Short phones: keep both buttons on screen without scrolling. */
+@media (max-height: 720px) {
+  .wrap {
+    gap: 6px;
+    padding-top: 0;
+  }
+
+  .title {
+    font-size: var(--text-2xl);
+  }
+
+  .sub {
+    font-size: var(--text-md);
+  }
+
+  .stat {
+    padding: 8px;
+  }
+
+  .stat dd {
+    font-size: var(--text-xl);
+  }
+
+  .foundList img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .actions {
+    gap: 10px;
+    margin-top: 6px;
+  }
+}

@@ -1,0 +1,1915 @@
+{
+  "version": 1,
+  "totems": [
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Shava",
+          "type": "related totem",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Vhuramai",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mwendamberi",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Museyamwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mutenhesanwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mazarura",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mhofu yemukono",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chihera",
+          "type": "women",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mpofu",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Mpofu",
+          "type": "equivalent",
+          "community": "Kalanga"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele",
+        "Kalanga"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Mhofu yeDube, wekwaSeke.\nZvaonekwa mhuka huru isingadyiwi mumba.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Strongly supported. Shava is recorded as a variant of the same eland totem; kept as its own entry and linked.",
+      "id": "mhofu",
+      "name": "Mhofu",
+      "answerIds": [
+        "eland"
+      ],
+      "explanation": "The eland is the largest antelope. Mhofu families respect it and do not eat its meat.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "herald-mugovera2023",
+        "herald-identity",
+        "wiki-shava",
+        "kwaunobva",
+        "beingafrican",
+        "zimprofiles"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Mhofu",
+          "type": "related totem",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Museyamwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mwendamberi",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mutenhesanwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mazarura",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mufakose",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nyakudirwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Vhuramai",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nhuka",
+          "type": "other name",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Herald and Nkenne pair Shava with the eland; Wikipedia calls it a variant of Mhofu.",
+      "id": "shava",
+      "name": "Shava",
+      "answerIds": [
+        "eland"
+      ],
+      "explanation": "Shava is the eland totem of many Hera families. It is closely linked to Mhofu.",
+      "sources": [
+        "wiki-shava",
+        "kwaunobva",
+        "zimboriginal-mitupo",
+        "nkenne",
+        "herald-identity"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Shoko",
+          "type": "spelling",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Tsoko",
+          "type": "spelling",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mukanya",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Vhudzijena",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Makwiramiti",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Murehwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chirongo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Wafawanaka",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mbire",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "MaNcube",
+          "type": "women",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mwenewazvo",
+          "type": "women",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Ncube",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Ncube",
+          "type": "equivalent",
+          "community": "Kalanga"
+        },
+        {
+          "name": "Soko",
+          "type": "totem",
+          "community": "Nambya"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele",
+        "Kalanga",
+        "Nambya"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Eee, maita Shoko Vhudzijena,\nEwoi Soko.",
+        "source": "kwaunobva"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Kwaunobva, Chivara and most survey answers name the vervet monkey; Mapira, the Herald and Totem Network say monkey or baboon. Both pictures are accepted, so the game never shows them together. Brief: verify the intended clan association.",
+      "id": "soko",
+      "name": "Soko",
+      "answerIds": [
+        "monkey",
+        "baboon"
+      ],
+      "explanation": "Soko is the monkey totem, one of the oldest and most widespread in Zimbabwe. Some families link it to the baboon.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "kwaunobva",
+        "chivara",
+        "zimboriginal-survey",
+        "zimboriginal-mitupo",
+        "totemnetwork",
+        "beingafrican",
+        "zimtribes-nambya",
+        "herald-mugovera2023"
+      ]
+    },
+    {
+      "kind": "praise name",
+      "parentId": "soko",
+      "category": "animal",
+      "relatedPictureIds": [
+        "monkey"
+      ],
+      "otherNames": [
+        {
+          "name": "Soko",
+          "type": "totem",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Vhudzijena",
+          "type": "praise",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "The brief requires Mukanya to match the baboon. Totem Network supports a baboon link, but Kwaunobva and Chivara list Mukanya as a praise name of Soko, the vervet monkey. The monkey is never shown as a wrong answer here. Reviewer must explain the Mukanya and Soko relationship.",
+      "id": "mukanya",
+      "name": "Mukanya",
+      "answerIds": [
+        "baboon"
+      ],
+      "explanation": "Mukanya is a praise name of the Soko clan. It is said to describe the galloping steps of a baboon climbing a mountain.",
+      "sources": [
+        "brief",
+        "totemnetwork",
+        "kwaunobva",
+        "chivara"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Murambwi",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mhazi",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Gurundoro",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nyamuzihwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Sipambi",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Samaita",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Sibanda",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita wekwaMhazi, Shumba yeChiroro.\nZvaonekwa vari munyika yeChidziwa.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Strongly supported.",
+      "id": "shumba",
+      "name": "Shumba",
+      "answerIds": [
+        "lion"
+      ],
+      "explanation": "The lion stands for strength, courage and leadership. Shumba families are praised as brave.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "herald-mugovera2023",
+        "herald-identity",
+        "kwaunobva",
+        "zimboriginal-mitupo",
+        "wiki-sibanda",
+        "beingafrican",
+        "nkenne"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Zhou",
+          "type": "spelling",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Samanyanga",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mhukahuru",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mawombe",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Makumbo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mutembwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Ndlovu",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Zhou",
+          "type": "equivalent",
+          "community": "Kalanga"
+        },
+        {
+          "name": "Ndou",
+          "type": "equivalent",
+          "community": "Venda"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele",
+        "Kalanga",
+        "Venda"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Samanyanga, Nzou inobva kumakore.\nZvaonekwa Mukonoweshuro, muzinda wehondo.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Strongly supported for ChiShona and isiNdebele. Venda Ndou is inferred from the clan name only and needs a Venda source.",
+      "id": "nzou",
+      "name": "Nzou",
+      "answerIds": [
+        "elephant"
+      ],
+      "explanation": "The elephant stands for wisdom, power and protecting the family. Nzou families are praised as Samanyanga.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "herald-identity",
+        "herald-mugovera2023",
+        "kwaunobva",
+        "wiki-ndlovu",
+        "beingafrican",
+        "wiki-kalanga",
+        "wiki-venda"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Tembo",
+          "type": "related totem",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Dube",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Dhuve",
+          "type": "spelling",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Madhuve",
+          "type": "other name",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Mazvimbakupa, Mbizi yapinda mumba.\nZvaonekwa vari kwaChihota, vane mavara anenge denga.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Strongly supported.",
+      "id": "mbizi",
+      "name": "Mbizi",
+      "answerIds": [
+        "zebra"
+      ],
+      "explanation": "The zebra stands for pride and dignity. Mbizi families do not hunt or kill zebras.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "herald-identity",
+        "herald-mugovera2023",
+        "beingafrican",
+        "zimprofiles",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Mbizi",
+          "type": "related totem",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mazvimbakupa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Samaita",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Dhuve",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chiota",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mubaiwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Tembo",
+          "type": "totem",
+          "community": "Kalanga"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "Kalanga"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Mazvimbakupa, Maita Mbizi,\nmaita Zvimbakugova.",
+        "source": "kwaunobva"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Kwaunobva labels Tembo as zebra (Mbizi) but also calls it part of an elephant lineage in one place. Reviewer to confirm.",
+      "id": "tembo",
+      "name": "Tembo",
+      "answerIds": [
+        "zebra"
+      ],
+      "explanation": "Tembo is a zebra totem closely linked to Mbizi. Its families are praised as Mazvimbakupa.",
+      "sources": [
+        "kwaunobva",
+        "zimboriginal-mitupo",
+        "wiki-kalanga"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Shonga",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Muzvare",
+          "type": "women",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chirombowe",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mhukahuru",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Imhenyu",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nyathi",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Nyati, wekwaChimbangu.\nZvaonekwa mhuka inotyisa, ine simba rinozura miti.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Strongly supported.",
+      "id": "nyati",
+      "name": "Nyati",
+      "answerIds": [
+        "buffalo"
+      ],
+      "explanation": "The buffalo is strong and protects its herd. Nyati families are praised as Shonga.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "herald-identity",
+        "herald-mugovera2023",
+        "kwaunobva",
+        "beingafrican",
+        "zimprofiles"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Ngwenya",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Ngwena, ishe weziva guru.\nZvaonekwa vari muZambezi, vane ganda risingabvumi mapfumo.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Mapira lists Ngwenya (crocodile); BeingAfrican lists the Ngwenya clan.",
+      "id": "ngwena",
+      "name": "Ngwena",
+      "answerIds": [
+        "crocodile"
+      ],
+      "explanation": "The crocodile lives in deep rivers. Ngwena families are linked to the water and to strength.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "beingafrican"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [
+        "bird",
+        "bateleur"
+      ],
+      "otherNames": [
+        {
+          "name": "Shiri",
+          "type": "related totem",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chasura",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Maokomavi",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Matapatira",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Manyoni",
+          "type": "women",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nyoni",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Mazviita Shiri, Hungwe, Matapira.",
+        "source": "kwaunobva"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Kwaunobva and BeingAfrican name the fish eagle. Mapira calls Hungwe the Great Zimbabwe Bird. Other birds are never shown as wrong answers.",
+      "id": "hungwe",
+      "name": "Hungwe",
+      "answerIds": [
+        "fish-eagle"
+      ],
+      "explanation": "Hungwe is the fish eagle, a bird that flies high and sees far.",
+      "sources": [
+        "brief",
+        "kwaunobva",
+        "beingafrican",
+        "mapira2013",
+        "zimprofiles"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Mapira lists Hove (fish). ZimbOriginal lists hove as one of the Dziva totem animals.",
+      "id": "hove",
+      "name": "Hove",
+      "answerIds": [
+        "fish"
+      ],
+      "explanation": "Hove means fish. Families with this totem respect fish and do not eat them.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "zimboriginal-mitupo"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Nguruve",
+          "type": "other name",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Makombe",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nyanguru",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Ngulube",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Maḓavha",
+          "type": "clan",
+          "community": "Venda"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele",
+        "Venda"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Sources say wild pig, pig or warthog. The picture shows a warthog; reviewer to confirm. Venda link is inferred from a clan name only.",
+      "id": "humba",
+      "name": "Humba",
+      "answerIds": [
+        "warthog"
+      ],
+      "explanation": "Humba is the wild pig totem. Humba families do not eat pork.",
+      "sources": [
+        "brief",
+        "kwaunobva",
+        "zimprofiles",
+        "beingafrican",
+        "wiki-venda"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Nungu",
+          "type": "other name",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Wamambo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mukwasha waMambo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chirasha",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Maphosa",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Hlatshwayo",
+          "type": "praise",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Strongly supported for porcupine. One forum post pairs Ngara with the leopard; not used.",
+      "id": "ngara",
+      "name": "Ngara",
+      "answerIds": [
+        "porcupine"
+      ],
+      "explanation": "Ngara, also called Nungu, is the porcupine. Its families are praised as the in-laws of the king.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "kwaunobva",
+        "zimprofiles",
+        "beingafrican"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Hwesa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Musoni",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Katerere",
+          "type": "praise",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Zimbabwe Profiles pairs Mbeva with the mouse; Kwaunobva lists Hwesa Musoni.",
+      "id": "mbeva",
+      "name": "Mbeva",
+      "answerIds": [
+        "mouse"
+      ],
+      "explanation": "Mbeva is the mouse totem. Its families are linked to the Hwesa people.",
+      "sources": [
+        "brief",
+        "zimprofiles",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [
+        "fish-eagle",
+        "bateleur",
+        "guinea-fowl",
+        "chicken"
+      ],
+      "otherNames": [
+        {
+          "name": "Hungwe",
+          "type": "related totem",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Marunga",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Shirichena",
+          "type": "praise",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Brief: identify species only when verified. All other birds are excluded from wrong answers.",
+      "id": "shiri",
+      "name": "Shiri",
+      "answerIds": [
+        "bird"
+      ],
+      "explanation": "Shiri means bird. The exact bird depends on the family, so the picture shows a general bird.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "zimprofiles"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "symbol",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Chirandu",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Moyondizvo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Sinyoro",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Dhewa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Sithole",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nematombo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Wadyegora",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Moyo",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Moyo",
+          "type": "equivalent",
+          "community": "Kalanga"
+        },
+        {
+          "name": "Moyo",
+          "type": "earlier totem",
+          "community": "Nambya"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele",
+        "Kalanga",
+        "Nambya"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Mapira: cattle heart. Survey: many name cattle, others the clan name itself.",
+      "id": "moyo",
+      "name": "Moyo",
+      "answerIds": [
+        "heart"
+      ],
+      "explanation": "Moyo means heart. Many families link it to the heart of cattle, which they do not eat.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "kwaunobva",
+        "zimprofiles",
+        "nkenne",
+        "zimtribes-nambya",
+        "zimboriginal-survey"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "symbol",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Madyirapazhe",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chitova",
+          "type": "praise",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Mapira: legs of any animal. Zimbabwe Profiles: cattle leg. Brief: verify cultural representation.",
+      "id": "gumbo",
+      "name": "Gumbo",
+      "answerIds": [
+        "leg"
+      ],
+      "explanation": "Gumbo means leg. Gumbo families do not eat the legs of animals, especially cattle.",
+      "sources": [
+        "brief",
+        "mapira2013",
+        "zimprofiles",
+        "nkenne",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "symbol",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Chiveso",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mlilo",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Mapira lists Mlilo (fire). Zimbabwe Profiles links Moto to Shangani people of the Lowveld.",
+      "id": "moto",
+      "name": "Moto",
+      "answerIds": [
+        "fire"
+      ],
+      "explanation": "Moto means fire. In isiNdebele the same totem is called Mlilo.",
+      "sources": [
+        "mapira2013",
+        "zimprofiles"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Ishwa",
+          "type": "other name",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Dhliwayo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mlambo",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Mapira and the Herald say ants; ZimbOriginal says flying termite (ishwa). Picture shows a flying termite; reviewer to confirm.",
+      "id": "beta",
+      "name": "Beta",
+      "answerIds": [
+        "termite"
+      ],
+      "explanation": "Beta is the flying termite, called ishwa. Its families are known for working together.",
+      "sources": [
+        "mapira2013",
+        "herald-mugovera2023",
+        "zimboriginal-mitupo",
+        "beingafrican",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [
+        "tortoise"
+      ],
+      "otherNames": [
+        {
+          "name": "Mukuruvambwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Kota",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chuma",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Gumbi",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Tshuma",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        },
+        {
+          "name": "Tshuma",
+          "type": "totem",
+          "community": "Kalanga"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele",
+        "Kalanga"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Gwai, wekwaMurambwi.\nZvaonekwa vari kumafuro, ane mvere inotonhorera mwoyo.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Not in the brief. Sheep is well supported, but ZimbOriginal notes Gwai families in Manicaland name the tortoise (kamba).",
+      "id": "gwai",
+      "name": "Gwai",
+      "answerIds": [
+        "sheep"
+      ],
+      "explanation": "Gwai is the sheep totem. Gwai families do not eat mutton.",
+      "sources": [
+        "herald-identity",
+        "zimprofiles",
+        "beingafrican",
+        "kwaunobva",
+        "zimboriginal-survey"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Nkenne mentions Kamba; ZimbOriginal links it to Gwai families in Manicaland.",
+      "id": "kamba",
+      "name": "Kamba",
+      "answerIds": [
+        "tortoise"
+      ],
+      "explanation": "Kamba is the tortoise. Families with this totem protect tortoises.",
+      "sources": [
+        "nkenne",
+        "zimboriginal-mitupo"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Chikonamombe",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Mpala",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Mhara, musvinuri wemakomo.\nZvaonekwa vari musango, vanosvetuka sechiedza.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Not in the brief; well supported.",
+      "id": "mhara",
+      "name": "Mhara",
+      "answerIds": [
+        "impala"
+      ],
+      "explanation": "The impala jumps high and runs fast. Mhara families are praised as Chikonamombe.",
+      "sources": [
+        "herald-mugovera2023",
+        "zimprofiles",
+        "beingafrican",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [
+        "buffalo"
+      ],
+      "otherNames": [
+        {
+          "name": "Mupamombe",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Nkomo",
+          "type": "equivalent",
+          "community": "isiNdebele"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Mombe, pfuma yemadzibaba.\nZvaonekwa vari kumafuro, chiremerera chemusha.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Not in the brief. BeingAfrican and Zimbabwe Profiles pair Nkomo with cattle; the ChiShona name Mombe as a totem needs confirming.",
+      "id": "mombe",
+      "name": "Mombe",
+      "answerIds": [
+        "cattle"
+      ],
+      "explanation": "Cattle were a family’s wealth. The Nkomo clan in isiNdebele has the same totem.",
+      "sources": [
+        "beingafrican",
+        "zimprofiles",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [
+        "snake"
+      ],
+      "otherNames": [
+        {
+          "name": "Shato",
+          "type": "other name",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Saunyama",
+          "type": "praise",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Herald and Zimbabwe Profiles pair Mheta with the python.",
+      "id": "mheta",
+      "name": "Mheta",
+      "answerIds": [
+        "python"
+      ],
+      "explanation": "Mheta, also called Shato, is the African rock python.",
+      "sources": [
+        "herald-mugovera2023",
+        "zimprofiles",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Mbada",
+          "type": "other name",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Simboti",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Chiruka",
+          "type": "women",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Only Zvangu states the leopard link directly; Kwaunobva lists Nhewa Simboti without an animal. Needs a second source.",
+      "id": "nhewa",
+      "name": "Nhewa",
+      "answerIds": [
+        "leopard"
+      ],
+      "explanation": "Nhewa is linked to the leopard (mbada), known for stealth and courage.",
+      "sources": [
+        "zvangu-mbada",
+        "kwaunobva"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [
+        {
+          "name": "Chihwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Gola",
+          "type": "praise",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "isiNdebele"
+      ],
+      "tradition": null,
+      "nhetembo": null,
+      "audio": null,
+      "status": "pending",
+      "notes": "Wild cat in three sources; ZimbOriginal says both wild cat and painted dog are recognised.",
+      "id": "bonga",
+      "name": "Bonga",
+      "answerIds": [
+        "wildcat"
+      ],
+      "explanation": "Bonga is the wild cat totem. Some families link it to the painted dog instead.",
+      "sources": [
+        "beingafrican",
+        "zimprofiles",
+        "zimboriginal-mitupo"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [
+        "monkey"
+      ],
+      "otherNames": [
+        {
+          "name": "Ghudo",
+          "type": "totem",
+          "community": "Kalanga"
+        }
+      ],
+      "communities": [
+        "ChiShona",
+        "Kalanga"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Gudo, wekwaBero.\nZvaonekwa vari mumatombo, vari kudya nzungu.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "pending",
+      "notes": "Not in the brief. Kalanga Ghudo is documented; a separate ChiShona Gudo totem is not. Reviewer to decide whether it stands alone or belongs under Soko.",
+      "id": "gudo",
+      "name": "Gudo",
+      "answerIds": [
+        "baboon"
+      ],
+      "explanation": "Gudo means baboon. Some Kalanga families honour the baboon, and some Soko families link their totem to it.",
+      "sources": [
+        "wiki-kalanga",
+        "zimboriginal-survey"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "symbol",
+      "relatedPictureIds": [
+        "fish",
+        "hippo",
+        "fish-eagle"
+      ],
+      "otherNames": [
+        {
+          "name": "Musaigwa",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Muyambo",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Dziriro",
+          "type": "praise",
+          "community": "ChiShona"
+        },
+        {
+          "name": "Shayamombe",
+          "type": "praise",
+          "community": "ChiShona"
+        }
+      ],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Shayamombe, Mandinginda,\nhove irimudziva.",
+        "source": "kwaunobva"
+      },
+      "audio": null,
+      "status": "unresolved",
+      "notes": "The brief says Dziva must not get one universal animal. Sources name fish, hippo and fish eagle. Kept out of scored play.",
+      "id": "dziva",
+      "name": "Dziva",
+      "answerIds": [
+        "water"
+      ],
+      "explanation": "Dziva means a deep pool. Families link it to different water creatures: the fish, the hippo or the fish eagle.",
+      "sources": [
+        "brief",
+        "zimboriginal-mitupo",
+        "kwaunobva",
+        "herald-mugovera2023",
+        "nkenne",
+        "herald-identity"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Mbudzi, wekwaGumbo.\nZvaonekwa vari pamakomo, vasingakanganwi nzira yekumusha.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Not in the brief. No source found for a ChiShona Mbudzi totem; one reader comment gives Muleya (Tonga) as goat.",
+      "id": "mbudzi",
+      "name": "Mbudzi",
+      "answerIds": [
+        "goat"
+      ],
+      "explanation": "The goat climbs steep hills.",
+      "sources": [
+        "app-v1"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Dindingwe, mumhanyi wegomba.\nZvaonekwa mheni yepasi, inobata nemvura.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Not in the brief. No source found for this totem.",
+      "id": "dindingwe",
+      "name": "Dindingwe",
+      "answerIds": [
+        "cheetah"
+      ],
+      "explanation": "The cheetah is the fastest runner.",
+      "sources": [
+        "app-v1"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Chapungu, chizuva chegore.\nZvaonekwa vari mudenga, muoni wezvakavanzika.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Not in the brief. The bateleur is culturally important, but no source found naming it as a mutupo.",
+      "id": "chapungu",
+      "name": "Chapungu",
+      "answerIds": [
+        "bateleur"
+      ],
+      "explanation": "The bateleur eagle glides high in the sky.",
+      "sources": [
+        "app-v1"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Nyoka, soko yeBero.\nZvaonekwa vari muuswa, ishe ane uturu unouraya.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Not in the brief. The sourced snake totem is Mheta (python); Nyoka itself has no source.",
+      "id": "nyoka",
+      "name": "Nyoka",
+      "answerIds": [
+        "snake"
+      ],
+      "explanation": "The snake moves quietly through the grass.",
+      "sources": [
+        "app-v1"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Huku, wekwaMuseyamwa.\nZvaonekwa vari padare, vanozivisa kuti kwaedza.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Not in the brief. No ChiShona source found; one Tonga reader comment mentions a rooster clan.",
+      "id": "huku",
+      "name": "Huku",
+      "answerIds": [
+        "chicken"
+      ],
+      "explanation": "The rooster crows when morning comes.",
+      "sources": [
+        "app-v1"
+      ]
+    },
+    {
+      "kind": "totem",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "ChiShona"
+      ],
+      "tradition": null,
+      "nhetembo": {
+        "text": "Maita Hanga, shiri yemakwati.\nZvaonekwa vari musango, vane runako rusingaperi.",
+        "source": "app-v1"
+      },
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Not in the brief. No source found; replaced the earlier Gwayana entry (gwayana means lamb).",
+      "id": "hanga",
+      "name": "Hanga",
+      "answerIds": [
+        "guinea-fowl"
+      ],
+      "explanation": "The guinea fowl has beautiful spotted feathers.",
+      "sources": [
+        "app-v1"
+      ]
+    },
+    {
+      "kind": "clan name",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "Tonga"
+      ],
+      "tradition": "Tonga (Binga)",
+      "nhetembo": null,
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Only source is reader comments on one blog. Reader comments disagree: elephant or zebra. Needs a Tonga cultural reviewer or published source.",
+      "id": "mudenda",
+      "name": "Mudenda",
+      "answerIds": [
+        "elephant"
+      ],
+      "explanation": "Mudenda is a Tonga clan name (mukowa).",
+      "sources": [
+        "zimtribes-tonga"
+      ]
+    },
+    {
+      "kind": "clan name",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "Tonga"
+      ],
+      "tradition": "Tonga (Binga)",
+      "nhetembo": null,
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Only source is reader comments on one blog. Reader comments disagree: dog or elephant. Needs a Tonga cultural reviewer or published source.",
+      "id": "munsaka",
+      "name": "Munsaka",
+      "answerIds": [
+        "dog"
+      ],
+      "explanation": "Munsaka is a Tonga clan name (mukowa).",
+      "sources": [
+        "zimtribes-tonga"
+      ]
+    },
+    {
+      "kind": "clan name",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "Tonga"
+      ],
+      "tradition": "Tonga (Binga)",
+      "nhetembo": null,
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Only source is reader comments on one blog. One reader comment. Needs a Tonga cultural reviewer or published source.",
+      "id": "muchindu",
+      "name": "Muchindu",
+      "answerIds": [
+        "lion"
+      ],
+      "explanation": "Muchindu is a Tonga clan name (mukowa).",
+      "sources": [
+        "zimtribes-tonga"
+      ]
+    },
+    {
+      "kind": "clan name",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "Tonga"
+      ],
+      "tradition": "Tonga (Binga)",
+      "nhetembo": null,
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Only source is reader comments on one blog. One reader comment. Needs a Tonga cultural reviewer or published source.",
+      "id": "mweetwa",
+      "name": "Mweetwa",
+      "answerIds": [
+        "crocodile"
+      ],
+      "explanation": "Mweetwa is a Tonga clan name (mukowa).",
+      "sources": [
+        "zimtribes-tonga"
+      ]
+    },
+    {
+      "kind": "clan name",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "Tonga"
+      ],
+      "tradition": "Tonga (Binga)",
+      "nhetembo": null,
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Only source is reader comments on one blog. One reader comment. Needs a Tonga cultural reviewer or published source.",
+      "id": "muloongo",
+      "name": "Muloongo",
+      "answerIds": [
+        "monkey"
+      ],
+      "explanation": "Muloongo is a Tonga clan name (mukowa).",
+      "sources": [
+        "zimtribes-tonga"
+      ]
+    },
+    {
+      "kind": "clan name",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "Tonga"
+      ],
+      "tradition": "Tonga (Binga)",
+      "nhetembo": null,
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Only source is reader comments on one blog. One reader comment. Needs a Tonga cultural reviewer or published source.",
+      "id": "muleya",
+      "name": "Muleya",
+      "answerIds": [
+        "goat"
+      ],
+      "explanation": "Muleya is a Tonga clan name (mukowa).",
+      "sources": [
+        "zimtribes-tonga"
+      ]
+    },
+    {
+      "kind": "clan name",
+      "parentId": null,
+      "category": "animal",
+      "relatedPictureIds": [],
+      "otherNames": [],
+      "communities": [
+        "Tonga"
+      ],
+      "tradition": "Tonga (Binga)",
+      "nhetembo": null,
+      "audio": null,
+      "status": "unresolved",
+      "notes": "Only source is reader comments on one blog. One reader comment. Needs a Tonga cultural reviewer or published source.",
+      "id": "munsanje",
+      "name": "Munsanje",
+      "answerIds": [
+        "hare"
+      ],
+      "explanation": "Munsanje is a Tonga clan name (mukowa).",
+      "sources": [
+        "zimtribes-tonga"
+      ]
+    }
+  ]
+}

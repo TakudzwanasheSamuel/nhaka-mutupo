@@ -1,0 +1,355 @@
+{
+  "version": 1,
+  "pictures": [
+    {
+      "id": "lion",
+      "name": "Lion",
+      "nameSn": "Shumba",
+      "category": "animal",
+      "hue": 38,
+      "art": "lion",
+      "imageAlt": "A lion’s face with a big orange mane.",
+      "status": "pending"
+    },
+    {
+      "id": "elephant",
+      "name": "Elephant",
+      "nameSn": "Nzou",
+      "category": "animal",
+      "hue": 284,
+      "art": "elephant",
+      "imageAlt": "A grey elephant with big ears, a trunk and two white tusks.",
+      "status": "pending"
+    },
+    {
+      "id": "zebra",
+      "name": "Zebra",
+      "nameSn": "Mbizi",
+      "category": "animal",
+      "hue": 265,
+      "art": "zebra",
+      "imageAlt": "A white zebra head with black stripes and a dark muzzle.",
+      "status": "pending"
+    },
+    {
+      "id": "monkey",
+      "name": "Vervet monkey",
+      "nameSn": "Tsoko",
+      "category": "animal",
+      "hue": 114,
+      "art": "monkey",
+      "imageAlt": "A grey-green monkey with a black face and a white band of fur on its forehead.",
+      "status": "pending"
+    },
+    {
+      "id": "baboon",
+      "name": "Baboon",
+      "nameSn": "Gudo",
+      "category": "animal",
+      "hue": 19,
+      "art": "baboon",
+      "imageAlt": "A brown baboon with a long dog-like muzzle and close-set eyes.",
+      "status": "pending"
+    },
+    {
+      "id": "sheep",
+      "name": "Sheep",
+      "nameSn": "Gwai",
+      "category": "animal",
+      "hue": 152,
+      "art": "sheep",
+      "imageAlt": "A sheep with thick white wool and a pale face.",
+      "status": "pending"
+    },
+    {
+      "id": "goat",
+      "name": "Goat",
+      "nameSn": "Mbudzi",
+      "category": "animal",
+      "hue": 57,
+      "art": "goat",
+      "imageAlt": "A brown and white goat with curved horns, droopy ears and a beard.",
+      "status": "pending"
+    },
+    {
+      "id": "cattle",
+      "name": "Cattle (Nguni cow)",
+      "nameSn": "Mombe",
+      "category": "animal",
+      "hue": 95,
+      "art": "cattle",
+      "imageAlt": "A white cow with black and brown patches and wide curved horns.",
+      "status": "pending"
+    },
+    {
+      "id": "buffalo",
+      "name": "Buffalo",
+      "nameSn": "Nyati",
+      "category": "animal",
+      "hue": 0,
+      "art": "buffalo",
+      "imageAlt": "A dark buffalo with heavy horns that curve down and up.",
+      "status": "pending"
+    },
+    {
+      "id": "eland",
+      "name": "Eland",
+      "nameSn": "Mhofu",
+      "category": "animal",
+      "hue": 303,
+      "art": "eland",
+      "imageAlt": "An eland: a tan antelope with straight twisted horns, a dark tuft on its forehead and a hanging dewlap.",
+      "status": "pending"
+    },
+    {
+      "id": "impala",
+      "name": "Impala",
+      "nameSn": "Mhara",
+      "category": "animal",
+      "hue": 208,
+      "art": "impala",
+      "imageAlt": "A reddish impala with S-shaped horns and white rings around its eyes.",
+      "status": "pending"
+    },
+    {
+      "id": "cheetah",
+      "name": "Cheetah",
+      "nameSn": "Dindingwe",
+      "category": "animal",
+      "hue": 133,
+      "art": "cheetah",
+      "imageAlt": "A yellow cheetah face with black spots and black tear lines from the eyes.",
+      "status": "pending"
+    },
+    {
+      "id": "fish-eagle",
+      "name": "African fish eagle",
+      "nameSn": "Hungwe",
+      "category": "animal",
+      "hue": 189,
+      "art": "fish-eagle",
+      "imageAlt": "A fish eagle with a white head and chest, brown body and a yellow hooked beak.",
+      "status": "pending"
+    },
+    {
+      "id": "bateleur",
+      "name": "Bateleur eagle",
+      "nameSn": "Chapungu",
+      "category": "animal",
+      "hue": 341,
+      "art": "bateleur",
+      "imageAlt": "A bateleur eagle with black feathers, a red face and a yellow beak.",
+      "status": "pending"
+    },
+    {
+      "id": "crocodile",
+      "name": "Crocodile",
+      "nameSn": "Ngwena",
+      "category": "animal",
+      "hue": 171,
+      "art": "crocodile",
+      "imageAlt": "A green crocodile with a long jaw full of teeth.",
+      "status": "pending"
+    },
+    {
+      "id": "snake",
+      "name": "Snake",
+      "nameSn": "Nyoka",
+      "category": "animal",
+      "hue": 322,
+      "art": "snake",
+      "imageAlt": "A coiled green snake with a forked red tongue.",
+      "status": "pending"
+    },
+    {
+      "id": "python",
+      "name": "Python",
+      "nameSn": "Shato",
+      "category": "animal",
+      "hue": 30,
+      "art": "python",
+      "imageAlt": "A thick brown python with dark blotches, coiled up.",
+      "status": "pending"
+    },
+    {
+      "id": "chicken",
+      "name": "Chicken (rooster)",
+      "nameSn": "Huku",
+      "category": "animal",
+      "hue": 76,
+      "art": "chicken",
+      "imageAlt": "A white rooster with a red comb and a colourful tail.",
+      "status": "pending"
+    },
+    {
+      "id": "guinea-fowl",
+      "name": "Guinea fowl",
+      "nameSn": "Hanga",
+      "category": "animal",
+      "hue": 227,
+      "art": "guinea-fowl",
+      "imageAlt": "A dark guinea fowl covered in white spots with a blue face.",
+      "status": "pending"
+    },
+    {
+      "id": "hippo",
+      "name": "Hippopotamus",
+      "nameSn": "Mvuu",
+      "category": "animal",
+      "hue": 246,
+      "art": "hippo",
+      "imageAlt": "A hippo peeking out of the water.",
+      "status": "pending"
+    },
+    {
+      "id": "fish",
+      "name": "Fish",
+      "nameSn": "Hove",
+      "category": "animal",
+      "hue": 180,
+      "art": "fish",
+      "imageAlt": "A silver-blue fish with fins and a forked tail.",
+      "status": "pending"
+    },
+    {
+      "id": "warthog",
+      "name": "Warthog (wild pig)",
+      "nameSn": "Njiri",
+      "category": "animal",
+      "hue": 12,
+      "art": "warthog",
+      "imageAlt": "A grey warthog with a flat snout, curved tusks and a bristly mane.",
+      "status": "pending"
+    },
+    {
+      "id": "porcupine",
+      "name": "Porcupine",
+      "nameSn": "Nungu",
+      "category": "animal",
+      "hue": 44,
+      "art": "porcupine",
+      "imageAlt": "A porcupine covered in long black and white quills.",
+      "status": "pending"
+    },
+    {
+      "id": "mouse",
+      "name": "Mouse",
+      "nameSn": "Mbeva",
+      "category": "animal",
+      "hue": 200,
+      "art": "mouse",
+      "imageAlt": "A small grey mouse with round ears and a long tail.",
+      "status": "pending"
+    },
+    {
+      "id": "bird",
+      "name": "Bird",
+      "nameSn": "Shiri",
+      "category": "animal",
+      "hue": 160,
+      "art": "bird",
+      "imageAlt": "A small bird with folded wings. The species is not specified.",
+      "status": "pending"
+    },
+    {
+      "id": "termite",
+      "name": "Flying termite (ishwa)",
+      "nameSn": "Ishwa",
+      "category": "animal",
+      "hue": 50,
+      "art": "termite",
+      "imageAlt": "A flying termite with four long see-through wings.",
+      "status": "pending"
+    },
+    {
+      "id": "leopard",
+      "name": "Leopard",
+      "nameSn": "Mbada",
+      "category": "animal",
+      "hue": 90,
+      "art": "leopard",
+      "imageAlt": "A leopard face covered in black rosette spots.",
+      "status": "pending"
+    },
+    {
+      "id": "wildcat",
+      "name": "African wild cat",
+      "nameSn": "Bonga",
+      "category": "animal",
+      "hue": 270,
+      "art": "wildcat",
+      "imageAlt": "A small striped wild cat with pointed ears.",
+      "status": "pending"
+    },
+    {
+      "id": "tortoise",
+      "name": "Tortoise",
+      "nameSn": "Kamba",
+      "category": "animal",
+      "hue": 110,
+      "art": "tortoise",
+      "imageAlt": "A tortoise with a patterned domed shell.",
+      "status": "pending"
+    },
+    {
+      "id": "dog",
+      "name": "Dog",
+      "nameSn": "Imbwa",
+      "category": "animal",
+      "hue": 230,
+      "art": null,
+      "imageAlt": "A dog.",
+      "status": "pending"
+    },
+    {
+      "id": "hare",
+      "name": "Hare",
+      "nameSn": "Tsuro",
+      "category": "animal",
+      "hue": 140,
+      "art": null,
+      "imageAlt": "A hare.",
+      "status": "pending"
+    },
+    {
+      "id": "heart",
+      "name": "Heart",
+      "nameSn": "Moyo",
+      "category": "symbol",
+      "hue": 350,
+      "art": "heart",
+      "imageAlt": "A red heart.",
+      "status": "pending"
+    },
+    {
+      "id": "leg",
+      "name": "Leg",
+      "nameSn": "Gumbo",
+      "category": "symbol",
+      "hue": 25,
+      "art": "leg",
+      "imageAlt": "The leg of a cow, from hoof to knee.",
+      "status": "pending"
+    },
+    {
+      "id": "fire",
+      "name": "Fire",
+      "nameSn": "Moto",
+      "category": "symbol",
+      "hue": 15,
+      "art": "fire",
+      "imageAlt": "A bright orange flame.",
+      "status": "pending"
+    },
+    {
+      "id": "water",
+      "name": "Pool of water",
+      "nameSn": "Mvura",
+      "category": "symbol",
+      "hue": 195,
+      "art": "water",
+      "imageAlt": "A pool of water with ripples and a water lily.",
+      "status": "pending"
+    }
+  ]
+}

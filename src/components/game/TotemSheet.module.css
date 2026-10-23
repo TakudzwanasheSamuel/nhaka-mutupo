@@ -1,0 +1,157 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px 6px 12px;
+  border-radius: 999px;
+  background: var(--gold-soft);
+  color: var(--gold-deep);
+  border: 2px solid var(--gold);
+  font-family: var(--font-display-stack);
+  font-size: var(--text-md);
+  font-weight: 600;
+  animation: pop-in 0.45s cubic-bezier(0.3, 1.4, 0.5, 1) both;
+}
+
+.unchecked {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px 4px 10px;
+  border-radius: 999px;
+  border: 2px dashed var(--gold);
+  color: var(--gold-deep);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.art {
+  width: 168px;
+  height: 168px;
+  animation: pop-in 0.5s 0.05s cubic-bezier(0.3, 1.3, 0.5, 1) both;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.name {
+  font-size: var(--text-3xl);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.animal {
+  margin-top: -10px;
+  font-size: var(--text-lg);
+  color: var(--ink-soft);
+}
+
+.parent {
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--clay-deep);
+}
+
+.poem,
+.meaning,
+.names {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  text-align: left;
+}
+
+.poem {
+  background: var(--surface);
+  border: 2px solid var(--line);
+}
+
+.meaning {
+  background: var(--teal-soft);
+  font-size: var(--text-md);
+}
+
+.names {
+  padding: 4px 2px;
+}
+
+.label {
+  margin-bottom: 8px;
+  font-family: var(--font-read-stack);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.poemText {
+  white-space: pre-line;
+  font-size: var(--text-lg);
+  line-height: 1.5;
+}
+
+.chips {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chips li {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  font-size: var(--text-sm);
+  font-weight: 700;
+}
+
+.chips[data-kind='community'] li {
+  background: var(--sand);
+  border-color: var(--sand-deep);
+}
+
+.added {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--clay-deep);
+}
+
+.sources {
+  width: 100%;
+  text-align: left;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.sources summary {
+  cursor: pointer;
+  font-weight: 700;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+
+.sources ul {
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
+}
+
+.sources a {
+  color: var(--teal-press);
+}

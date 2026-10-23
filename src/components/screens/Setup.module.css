@@ -1,0 +1,215 @@
+/* Shared by the memory game and quiz set-up screens. */
+
+.screen {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 4px var(--gutter) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sectionTitle {
+  font-size: var(--text-lg);
+  margin-top: 8px;
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: var(--radius-md);
+  background: var(--gold-soft);
+  border: 2px solid var(--gold);
+  font-weight: 700;
+}
+
+.note {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.levels {
+  display: grid;
+  gap: 12px;
+}
+
+.level {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 92px;
+  padding: 12px 14px;
+  text-align: left;
+  background: var(--surface);
+  border: 3px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 0 var(--line);
+  transition: transform 0.08s ease, box-shadow 0.08s ease, border-color 0.15s ease;
+}
+
+.level:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+.level[data-selected='true'] {
+  border-color: var(--teal);
+  background: #f3fbfa;
+  box-shadow: 0 4px 0 var(--teal-press);
+}
+
+.level:disabled {
+  opacity: 0.55;
+}
+
+.levelArt {
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.levelText {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.levelName {
+  font-family: var(--font-display-stack);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.levelMeta {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.levelEnd {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.radio {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 3px solid var(--sand-deep);
+  color: #fff;
+}
+
+.level[data-selected='true'] .radio {
+  background: var(--teal);
+  border-color: var(--teal);
+}
+
+.miniPair {
+  display: flex;
+  gap: 6px;
+}
+
+.miniCard {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 62px;
+  border-radius: 10px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+}
+
+.miniCard[data-kind='word'] {
+  background: var(--gold-soft);
+  font-family: var(--font-display-stack);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ── Quiz: scoring explainer ───────────────────── */
+
+.scoring {
+  margin-top: 8px;
+  padding: 16px 18px;
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  border: 2px solid var(--line);
+}
+
+.scoring h2 {
+  font-size: var(--text-lg);
+  margin-bottom: 10px;
+}
+
+.scoringList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.scoringList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: var(--text-md);
+  line-height: 1.35;
+}
+
+.scoringIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  font-family: var(--font-display-stack);
+  font-weight: 700;
+}
+
+.scoringIcon[data-kind='tries'] {
+  background: var(--teal-soft);
+  color: var(--teal-press);
+}
+
+.scoringIcon[data-kind='first'] {
+  background: var(--leaf-soft);
+  color: var(--leaf);
+}
+
+.scoringIcon[data-kind='second'] {
+  background: var(--gold-soft);
+  color: var(--gold-deep);
+}
+
+.scoringIcon[data-kind='shown'] {
+  background: var(--sand);
+  color: var(--ink-soft);
+}
+
+.dock {
+  position: sticky;
+  bottom: 0;
+  z-index: 5;
+  margin: 8px calc(var(--gutter) * -1) 0;
+  padding: 20px var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(to bottom, rgba(255, 247, 234, 0), var(--cream) 22px);
+}

@@ -1,0 +1,194 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "id": "brief",
+      "title": "Nhaka Mutupo programmer improvement instructions",
+      "author": "Prepared for Dr Lockias Chitanana",
+      "year": 2026,
+      "url": null,
+      "kind": "project brief",
+      "note": "Starting list for cultural review; not a complete inventory."
+    },
+    {
+      "id": "mapira2013",
+      "title": "Indigenous knowledge systems and their implications for sustainable development in Zimbabwe",
+      "author": "Mapira, J. and Mazambara, P.",
+      "year": 2013,
+      "url": "https://jsd-africa.com/Jsda/Vol15No5-Fall2013A/PDF/Indigenous%20Knowledge%20Systems%20and%20Their.Jemitias%20Mapira.pdf",
+      "kind": "journal article",
+      "note": "Journal of Sustainable Development in Africa 15(5), 90 to 106. Table 3 lists common totems in Zimbabwe."
+    },
+    {
+      "id": "herald-mugovera2023",
+      "title": "How our totems came about, purposes",
+      "author": "Gracious Mugovera (Manica Post), citing Prof. Isheunesu Mpepereki and historians",
+      "year": 2023,
+      "url": "https://www.heraldonline.co.zw/how-our-totems-came-about-purposes/",
+      "kind": "newspaper",
+      "note": "Notes that Ndebele izibongo often come from ancestors’ names rather than animals."
+    },
+    {
+      "id": "herald-identity",
+      "title": "Totems as identity and inheritance: what is in your mutupo?",
+      "author": "The Herald",
+      "year": null,
+      "url": "https://www.heraldonline.co.zw/totems-as-identity-and-inheritance-what-is-in-your-mutupo/",
+      "kind": "newspaper",
+      "note": "Background source named in the brief."
+    },
+    {
+      "id": "kwaunobva",
+      "title": "Kwaunobva: mitupo pages",
+      "author": "Kwaunobva",
+      "year": null,
+      "url": "https://kwaunobva.com/mitupo/",
+      "kind": "community reference site",
+      "note": "Per-totem pages with praise names for men and women, regions and praise poem openings."
+    },
+    {
+      "id": "chivara",
+      "title": "Soko (Tsoko) mutupo",
+      "author": "Chivara",
+      "year": null,
+      "url": "https://chivara.co.zw/knowledge/872ed221-2c91-4224-8736-18f3a0db80b0",
+      "kind": "community reference site",
+      "note": "Identifies Soko as the vervet monkey."
+    },
+    {
+      "id": "zimboriginal-mitupo",
+      "title": "Mutupo: 6 interesting things you should know about Shona totems, praise names and poetry",
+      "author": "ZimbOriginal",
+      "year": null,
+      "url": "https://zimboriginal.com/mutupo-6-interesting-things-you-should-know-about-shona-totems-praise-names-and-poetry/",
+      "kind": "community reference site",
+      "note": "Table of mitupo and zvidawo; says Dziva has three totem animals (hungwe, mvuu, hove)."
+    },
+    {
+      "id": "zimboriginal-survey",
+      "title": "Mutupo survey: insights from over 1,000 people",
+      "author": "ZimbOriginal",
+      "year": null,
+      "url": "https://zimboriginal.com/discoveries-zimbabweans-mutupo-survey/",
+      "kind": "survey report",
+      "note": "Soko respondents mostly named the vervet monkey, a few the baboon. Same animal can be shared by unrelated clans."
+    },
+    {
+      "id": "wiki-shava",
+      "title": "Shava Totem",
+      "author": "Wikipedia",
+      "year": null,
+      "url": "https://en.wikipedia.org/wiki/Shava_Totem",
+      "kind": "encyclopaedia",
+      "note": "Shava is a variant of Mhofu/Mpofu (eland); Kalanga use Mpofu. Article flagged as needing citations."
+    },
+    {
+      "id": "wiki-kalanga",
+      "title": "Kalanga people",
+      "author": "Wikipedia",
+      "year": null,
+      "url": "https://en.wikipedia.org/wiki/Kalanga_people",
+      "kind": "encyclopaedia",
+      "note": "Mndambeli clan venerates Ghudo (baboon) or Tembo; others use Shoko, Zhou and Tshuma."
+    },
+    {
+      "id": "wiki-venda",
+      "title": "Venda people",
+      "author": "Wikipedia",
+      "year": null,
+      "url": "https://en.wikipedia.org/wiki/Venda_people",
+      "kind": "encyclopaedia",
+      "note": "Names the Ndou clan and the Vha Ha-Maḓavha (warthogs) who came from Zimbabwe. Does not discuss totems directly."
+    },
+    {
+      "id": "wiki-sibanda",
+      "title": "Sibanda",
+      "author": "Wikipedia",
+      "year": null,
+      "url": "https://en.wikipedia.org/wiki/Sibanda",
+      "kind": "encyclopaedia",
+      "note": "Lion totem; common among Ndebele and Sotho families in Zimbabwe."
+    },
+    {
+      "id": "wiki-ndlovu",
+      "title": "Ndlovu",
+      "author": "Wikipedia",
+      "year": null,
+      "url": "https://en.wikipedia.org/wiki/Ndlovu",
+      "kind": "encyclopaedia",
+      "note": "Ndlovu means elephant; common among Ndebele and Zulu people."
+    },
+    {
+      "id": "beingafrican",
+      "title": "Clans and totems in Ndebele culture",
+      "author": "BeingAfrican",
+      "year": null,
+      "url": "https://beingafrican.org/culture-panel/clans-and-totems-in-ndebele-culture/",
+      "kind": "cultural website",
+      "note": "Lists 15 Ndebele clans (izibongo) with totems (isitemo)."
+    },
+    {
+      "id": "zimprofiles",
+      "title": "Zimbabwean totems and what they mean",
+      "author": "Zimbabwe Profiles",
+      "year": null,
+      "url": "https://zimprofiles.com/zimbabwean-totems-and-what-they-mean/",
+      "kind": "news website",
+      "note": "Broad list with praise names. Contains unsourced claims about character traits, which are not used."
+    },
+    {
+      "id": "nkenne",
+      "title": "Shona totems (mitupo): how animal symbols shape identity and guide marriage",
+      "author": "Nkenne",
+      "year": null,
+      "url": "https://www.nkenne.com/blog/shona-totems-mitupo",
+      "kind": "language-learning blog",
+      "note": "Totem meanings and taboos; mentions Kamba (tortoise) and Dziva as water."
+    },
+    {
+      "id": "zvangu-mbada",
+      "title": "The Mbada (leopard) totem",
+      "author": "Zvangu",
+      "year": null,
+      "url": "https://zvangu.com/the-mbada-leopard-totem-symbol-of-stealth-courage-ancient-shona-power/",
+      "kind": "cultural website",
+      "note": "Links Mbada (leopard) to the Nhewa and Simboti clans."
+    },
+    {
+      "id": "totemnetwork",
+      "title": "Ncube / Soko totem: what they represent",
+      "author": "Totem Network blog",
+      "year": 2019,
+      "url": "https://totemnetwork.blogspot.com/2019/03/ncube-soko-totem-what-they-represent.html",
+      "kind": "blog",
+      "note": "Soko as monkey/baboon; explains Mukanya as the galloping steps of a baboon climbing a mountain."
+    },
+    {
+      "id": "zimtribes-nambya",
+      "title": "History of the VaNambya people of Hwange District",
+      "author": "Zimtribes",
+      "year": null,
+      "url": "https://www.blog.zimtribes.com/history-of-the-vanambya-people-of-hwange-district/",
+      "kind": "history blog",
+      "note": "Hwange dynasty founder of the Soko (monkey) totem; dynasty earlier Moyo."
+    },
+    {
+      "id": "zimtribes-tonga",
+      "title": "Tonga groups (reader comments)",
+      "author": "Zimtribes",
+      "year": null,
+      "url": "https://www.blog.zimtribes.com/tonga-groups/",
+      "kind": "reader comments",
+      "note": "Clan and totem pairs come only from reader comments and some contradict each other. Low reliability."
+    },
+    {
+      "id": "app-v1",
+      "title": "Earlier version of the Nhaka Mutupo app",
+      "author": "Project team",
+      "year": 2026,
+      "url": null,
+      "kind": "project content",
+      "note": "Praise lines carried over from the first version. Their origin was not recorded, so they must be checked."
+    }
+  ]
+}
